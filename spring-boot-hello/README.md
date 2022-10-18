@@ -4,15 +4,6 @@
 
 该模块展示如何创建一个 Spring Boot 项目，页面输出 "hello, world"。
 
-## 创建项目
-
-右键点击项目名称，"New"->"Module"，填写项目信息，并选择项目位置、构建方式和 JDK 版本，点击 "NEXT"。
-![](image/2022-10-17_17-32-58.png)
-
-选择 Spring 版本和需要的依赖（如 Lombok），也可以后续在 pom.xml 文件中添加，点击 "CREATE"。此时，就成功创建了一个 Spring Boot
-项目。
-![](image/2022-10-17_17-34-04.png)
-
 ## 代码
 
 ### pom.xml
