@@ -82,6 +82,6 @@ public class CustomException extends RuntimeException implements ErrorCodeBase {
 
     @Override
     public String toString() {
-        return "ErrorException(code=" + this.getCode() + ", cnMsg=" + this.getCnMsg() + ", enMsg=" + this.getEnMsg() + ")";
+        return "Exception(code=" + this.getCode() + ", cnMsg=" + this.getCnMsg() + ", enMsg=" + this.getEnMsg() + ")";
     }
 }
