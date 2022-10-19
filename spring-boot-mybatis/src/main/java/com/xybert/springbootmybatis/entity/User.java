@@ -1,13 +1,16 @@
 package com.xybert.springbootmybatis.entity;
 
 import cn.hutool.core.date.DateTime;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 /**
+ * @description User 实体类
  * @author xybert
  * @date  2022/10/18 14:42
  */
@@ -15,6 +18,8 @@ import java.io.Serializable;
 @Component
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
 
     /**

@@ -19,11 +19,11 @@ MyBatisX 是一款基于 IDEA 的快速开发插件，在使用 MyBatis 和 MyBa
 #### user.init.sql
 
 ```mysql
-# 创建数据库 spring-boot-practice
+-- 创建数据库 spring-boot-practice
 CREATE DATABASE IF NOT EXISTS `spring-boot-practice` DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
 USE `spring-boot-practice`;
-# 创建表 user
+-- 创建表 user
 CREATE TABLE IF NOT EXISTS `user`
 (
     `id`          bigint(20)  NOT NULL AUTO_INCREMENT COMMENT '主键',

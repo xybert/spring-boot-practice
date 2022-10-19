@@ -4,4 +4,62 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xybert.springbootmybatis.mapper.UserMapper">
+
+    <select id="selectAllUser" resultType="com.xybert.springbootmybatis.entity.User">
+        SELECT *
+        FROM user;
+    </select>
+
+    <select id="selectUserById" resultType="com.xybert.springbootmybatis.entity.User">
+        SELECT *
+        FROM user
+        WHERE id = #{id};
+    </select>
+
+    <select id="selectUserByName" resultType="com.xybert.springbootmybatis.entity.User">
+        SELECT *
+        FROM user
+        WHERE name = #{name};
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO user (name,
+                          sex,
+                          age,
+                          tel,
+                          email,
+                          status,
+                          role,
+                          create_time,
+                          update_time)
+        VALUES (#{user.name},
+                #{user.sex},
+                #{user.age},
+                #{user.tel},
+                #{user.email},
+                #{user.status},
+                #{user.role},
+                #{user.createTime},
+                #{user.updateTime})
+    </insert>
+
+    <delete id="deleteUserById">
+        DELETE
+        FROM user
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        UPDATE user
+        SET name        = #{user.name},
+            sex         = #{user.sex},
+            age         = #{user.age},
+            tel         = #{user.tel},
+            email       = #{user.email},
+            status      = #{user.status},
+            role        = #{user.role},
+            update_time = #{user.updateTime}
+        WHERE id = #{user.id}
+    </update>
+
 </mapper>
