@@ -25,7 +25,7 @@ public interface UserService {
      * @param id 用户id
      * @return User 用户
      */
-    User selectUserById(int id);
+    User selectUserById(Long id);
 
     /**
      * 根绝用户名查询用户信息
@@ -49,7 +49,7 @@ public interface UserService {
      * @param id 用户id
      * @return true-成功 false-失败
      */
-    User deleteUserById(int id);
+    User deleteUserById(Long id);
 
     /**
      * 修改用户信息
@@ -59,5 +59,5 @@ public interface UserService {
      * @param id 用户id
      * @return User 用户
      */
-    User updateUser(User user, int id);
+    User updateUser(User user, Long id);
 }

@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/hello")
+@RequestMapping("")
 public class HelloWorld {
 
     private final static String HELLO = "Hello";
 
-    @GetMapping("")
+    @GetMapping("/world")
     public String helloWorld(@RequestParam(name = "object", required = false) String object) {
         if (StringUtils.isBlank(object)) {
             object = "world";

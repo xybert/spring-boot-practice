@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/info")
-    public User getUserInfo(@NotNull int id) {
+    public User getUserInfo(@NotNull Long id) {
         return userService.selectUserById(id);
     }
 
@@ -38,12 +38,12 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public User deleteUser(@NotNull int id) {
+    public User deleteUser(@NotNull Long id) {
         return userService.deleteUserById(id);
     }
 
     @PutMapping("/update")
-    public User updateUser(@RequestBody @Validated User user, @NotNull int id) {
+    public User updateUser(@RequestBody @Validated User user, @NotNull Long id) {
         return userService.updateUser(user, id);
     }
 }

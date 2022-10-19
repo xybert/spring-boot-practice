@@ -28,7 +28,7 @@ public interface UserMapper {
      * @param id 用户id
      * @return User 用户
      */
-    User selectUserById(@Param("id") int id);
+    User selectUserById(@Param("id") Long id);
 
     /**
      * 根据用户名查询用户信息
@@ -52,7 +52,7 @@ public interface UserMapper {
      * @param id 用户id
      * @return 1-成功 0-失败
      */
-    int deleteUserById(@Param("id") int id);
+    int deleteUserById(@Param("id") Long id);
 
     /**
      * 修改用户信息

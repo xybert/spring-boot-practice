@@ -11,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
      * @return User 用户
      */
     @Override
-    public User selectUserById(int id) {
+    public User selectUserById(Long id) {
         return Optional.ofNullable(userMapper.selectUserById(id))
                 .orElseThrow(() -> new CustomException(UserOperateEnum.USER_NOT_EXIST));
     }
@@ -77,12 +78,13 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             throw new CustomException(UserOperateEnum.USER_ALREADY_EXIST, userInfo.getName());
         }
+        Date date = new Date();
+        userInfo.setCreateTime(date);
+        userInfo.setUpdateTime(date);
         if (userMapper.insertUser(userInfo) == 0) {
             throw new CustomException(UserOperateEnum.USER_INSERT_FAIL);
         }
-        userInfo.setCreateTime(new DateTime());
-        userInfo.setUpdateTime(new DateTime());
-        return userMapper.selectUserById(userInfo.getId());
+        return userMapper.selectUserByName(userInfo.getName());
     }
 
     /**
@@ -92,10 +94,10 @@ public class UserServiceImpl implements UserService {
      * @return true-成功 false-失败
      */
     @Override
-    public User deleteUserById(int id) {
-        User user = selectUserById(id);
+    public User deleteUserById(Long id) {
+        User user = userMapper.selectUserById(id);
         if (userMapper.deleteUserById(id) == 0) {
-            throw new CustomException(UserOperateEnum.USER_DELETE_FAIL, user.getName());
+            throw new CustomException(UserOperateEnum.USER_DELETE_FAIL);
         }
         return user;
     }
@@ -109,12 +111,12 @@ public class UserServiceImpl implements UserService {
      * @return User 用户
      */
     @Override
-    public User updateUser(User userInfo, int id) {
-        User user = selectUserById(id);
+    public User updateUser(User userInfo, Long id) {
+        userMapper.selectUserById(id);
         userInfo.setId(id);
-        userInfo.setUpdateTime(new DateTime());
+        userInfo.setUpdateTime(new Date());
         if (userMapper.updateUser(userInfo) == 0) {
-            throw new CustomException(UserOperateEnum.USER_UPDATE_FAIL, user.getName());
+            throw new CustomException(UserOperateEnum.USER_UPDATE_FAIL);
         }
         return userMapper.selectUserById(id);
     }

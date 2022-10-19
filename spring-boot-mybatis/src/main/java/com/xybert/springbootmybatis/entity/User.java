@@ -1,6 +1,5 @@
 package com.xybert.springbootmybatis.entity;
 
-import cn.hutool.core.date.DateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @description User 实体类
@@ -25,7 +25,7 @@ public class User implements Serializable {
     /**
      * 逐渐
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 用户名
@@ -35,7 +35,7 @@ public class User implements Serializable {
     /**
      * 性别 1-男 0 女
      */
-    private Boolean sex;
+    private Integer sex;
 
     /**
      * 年龄
@@ -65,10 +65,10 @@ public class User implements Serializable {
     /**
      * 创建时间
      */
-    private DateTime createTime;
+    private Date createTime;
 
     /**
      * 更新时间
      */
-    private DateTime updateTime;
+    private Date updateTime;
 }
