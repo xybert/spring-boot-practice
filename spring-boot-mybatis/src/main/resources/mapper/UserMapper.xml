@@ -23,24 +23,37 @@
     </select>
 
     <insert id="insertUser">
-        INSERT INTO user (name,
-                          sex,
-                          age,
-                          tel,
-                          email,
-                          status,
-                          role,
-                          create_time,
-                          update_time)
-        VALUES (#{user.name},
-                #{user.sex},
-                #{user.age},
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            name, sex, age,
+            <if test='user != null and user.tel != null and user.tel != ""'>
+                tel,
+            </if>
+            <if test='user != null and user.email != null and user.email != ""'>
+                email,
+            </if>
+            <if test='user != null and user.status != null and user.status &gt;= 0 and user.status &lt;= 1'>
+                status,
+            </if>
+            <if test='user != null and user.role != null and user.role &gt;= 1 and user.role &lt;= 3'>
+                role,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{user.name}, #{user.sex}, #{user.age},
+            <if test='user != null and user.tel != null and user.tel != ""'>
                 #{user.tel},
+            </if>
+            <if test='user != null and user.email != null and user.email != ""'>
                 #{user.email},
+            </if>
+            <if test='user != null and user.status != null and user.status &gt;= 0 and user.status &lt;= 1'>
                 #{user.status},
+            </if>
+            <if test='user != null and user.role != null and user.role &gt;= 1 and user.role &lt;= 3'>
                 #{user.role},
-                #{user.createTime},
-                #{user.updateTime})
+            </if>
+        </trim>
     </insert>
 
     <delete id="deleteUserById">
@@ -51,14 +64,29 @@
 
     <update id="updateUser">
         UPDATE user
-        SET name        = #{user.name},
-            sex         = #{user.sex},
-            age         = #{user.age},
-            tel         = #{user.tel},
-            email       = #{user.email},
-            status      = #{user.status},
-            role        = #{user.role},
-            update_time = #{user.updateTime}
+        <trim prefix="set" suffixOverrides=",">
+            <if test='user != null and user.name != null and user.name != ""'>
+                name = #{user.name},
+            </if>
+            <if test='user != null and user.sex != null and user.sex &gt;= 0 and user.sex &lt;= 1'>
+                sex = #{user.sex},
+            </if>
+            <if test='user != null and user.age != null and user.age &gt; 0'>
+                age = #{user.age},
+            </if>
+            <if test='user != null and user.tel != null and user.tel != ""'>
+                tel = #{user.tel},
+            </if>
+            <if test='user != null and user.email != null and user.email != ""'>
+                email = #{user.email},
+            </if>
+            <if test='user != null and user.status != null and user.status &gt;= 0 and user.status &lt;= 1'>
+                status = #{user.status},
+            </if>
+            <if test='user != null and user.role != null and user.role &gt;= 1 and user.role &lt;= 3'>
+                role = #{user.role},
+            </if>
+        </trim>
         WHERE id = #{user.id}
     </update>
 

@@ -1,6 +1,7 @@
 package com.xybert.springbootmybatis.service.impl;
 
-import cn.hutool.core.date.DateTime;
+import cn.hutool.system.UserInfo;
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.xybert.springbootmybatis.entity.User;
 import com.xybert.springbootmybatis.enums.UserOperateEnum;
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 根绝用户名查询用户信息
+     * 根据用户名查询用户信息
      *
      * @param name 用户名
      * @return User 用户
@@ -78,9 +79,6 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             throw new CustomException(UserOperateEnum.USER_ALREADY_EXIST, userInfo.getName());
         }
-        Date date = new Date();
-        userInfo.setCreateTime(date);
-        userInfo.setUpdateTime(date);
         if (userMapper.insertUser(userInfo) == 0) {
             throw new CustomException(UserOperateEnum.USER_INSERT_FAIL);
         }
@@ -114,7 +112,6 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User userInfo, Long id) {
         userMapper.selectUserById(id);
         userInfo.setId(id);
-        userInfo.setUpdateTime(new Date());
         if (userMapper.updateUser(userInfo) == 0) {
             throw new CustomException(UserOperateEnum.USER_UPDATE_FAIL);
         }

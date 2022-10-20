@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `user`
     `email`       varchar(50)          DEFAULT '' COMMENT '邮箱',
     `status`      integer(2)  NOT NULL DEFAULT 1 COMMENT '状态 1-启用 0-禁用',
     `role`        integer(2)  NOT NULL DEFAULT 3 COMMENT '角色 1-超级管理员 2-管理员 3-普通用户',
-    `create_time` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+    `create_time` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     CONSTRAINT user_name_uindex
         UNIQUE (name),
