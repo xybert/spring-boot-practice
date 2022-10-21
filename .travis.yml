@@ -16,4 +16,5 @@ cache:
 
 branches:
   only:
-    - master
+    - main
+    - dev
