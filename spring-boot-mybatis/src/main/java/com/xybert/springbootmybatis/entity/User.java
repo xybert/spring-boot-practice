@@ -53,7 +53,7 @@ public class User implements Serializable {
     private String email;
 
     /**
-     * 状态 1-启用 2-禁用
+     * 状态 1-启用 0-禁用
      */
     private Integer status;
 

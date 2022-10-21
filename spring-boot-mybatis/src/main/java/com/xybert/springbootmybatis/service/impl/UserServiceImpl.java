@@ -1,7 +1,5 @@
 package com.xybert.springbootmybatis.service.impl;
 
-import cn.hutool.system.UserInfo;
-import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.xybert.springbootmybatis.entity.User;
 import com.xybert.springbootmybatis.enums.UserOperateEnum;
@@ -12,7 +10,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,7 +79,7 @@ public class UserServiceImpl implements UserService {
         if (userMapper.insertUser(userInfo) == 0) {
             throw new CustomException(UserOperateEnum.USER_INSERT_FAIL);
         }
-        return userMapper.selectUserByName(userInfo.getName());
+        return selectUserByName(userInfo.getName());
     }
 
     /**
@@ -93,7 +90,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User deleteUserById(Long id) {
-        User user = userMapper.selectUserById(id);
+        User user = selectUserById(id);
         if (userMapper.deleteUserById(id) == 0) {
             throw new CustomException(UserOperateEnum.USER_DELETE_FAIL);
         }
@@ -110,11 +107,10 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User updateUser(User userInfo, Long id) {
-        userMapper.selectUserById(id);
-        userInfo.setId(id);
+        selectUserById(id);
         if (userMapper.updateUser(userInfo) == 0) {
             throw new CustomException(UserOperateEnum.USER_UPDATE_FAIL);
         }
-        return userMapper.selectUserById(id);
+        return selectUserById(id);
     }
 }

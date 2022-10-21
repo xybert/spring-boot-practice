@@ -5,23 +5,6 @@
 
 <mapper namespace="com.xybert.springbootmybatis.mapper.UserMapper">
 
-    <select id="selectAllUser" resultType="com.xybert.springbootmybatis.entity.User">
-        SELECT *
-        FROM user;
-    </select>
-
-    <select id="selectUserById" resultType="com.xybert.springbootmybatis.entity.User">
-        SELECT *
-        FROM user
-        WHERE id = #{id};
-    </select>
-
-    <select id="selectUserByName" resultType="com.xybert.springbootmybatis.entity.User">
-        SELECT *
-        FROM user
-        WHERE name = #{name};
-    </select>
-
     <insert id="insertUser">
         INSERT INTO user
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -55,12 +38,6 @@
             </if>
         </trim>
     </insert>
-
-    <delete id="deleteUserById">
-        DELETE
-        FROM user
-        WHERE id = #{id}
-    </delete>
 
     <update id="updateUser">
         UPDATE user

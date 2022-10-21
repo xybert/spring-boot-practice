@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 /**
+ * @description 自定义异常类
  * @author xybert
  * @date 2022/10/19 14:26
  */

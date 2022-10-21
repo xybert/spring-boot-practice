@@ -1,8 +1,10 @@
 package com.xybert.springbootmybatis.mapper;
 
 import com.xybert.springbootmybatis.entity.User;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public interface UserMapper {
      *
      * @return List<User> 用户列表
      */
+    @Select("SELECT * FROM user")
     List<User> selectAllUser();
 
     /**
@@ -28,6 +31,7 @@ public interface UserMapper {
      * @param id 用户id
      * @return User 用户
      */
+    @Select("SELECT * FROM user WHERE id = #{id}")
     User selectUserById(@Param("id") Long id);
 
     /**
@@ -36,6 +40,7 @@ public interface UserMapper {
      * @param name 用户名
      * @return User 用户
      */
+    @Select("SELECT * FROM user WHERE name = #{name}")
     User selectUserByName(@Param("name") String name);
 
     /**
@@ -52,6 +57,7 @@ public interface UserMapper {
      * @param id 用户id
      * @return 1-成功 0-失败
      */
+    @Delete("DELETE FROM user WHERE id = #{id}")
     int deleteUserById(@Param("id") Long id);
 
     /**
