@@ -1,6 +1,6 @@
 # <center>[spring-boot-practice](https://github.com/xybert/spring-boot-practice)</center>
 
-<p style="text-align: center">
+<p align="center">
   <a href="https://github.com/xybert/spring-boot-practice/actions"></a><img alt="GitHub Workflow Status" src="https://github.com/xybert/spring-boot-practice/actions/workflows/dev.yml/badge.svg?branch=dev">
   <a href="https://www.codacy.com/gh/xybert/spring-boot-practice/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xybert/spring-boot-practice&amp;utm_campaign=Badge_Grade"><img alt="code quality" src="https://app.codacy.com/project/badge/Grade/6b4a0240044241248ba94ff62fa2e4c6"/></a>
   <a href="https://www.yuque.com/xybert"><img alt="author" src="https://img.shields.io/badge/author-xybert-blue.svg"/></a>
@@ -11,11 +11,19 @@
 
 ## 简述
 
-## 模块
+## 开发环境
 
-- [spring-boot-hello]()
-- [spring-boot-mybatis]()
-- [spring-boot-mybatis-plus]()
-- [spring-boot-jpa]()
-- [spring-boot-flyway]()
-- [spring-boot-swagger]()
+## 模块介绍
+
+- [x] [spring-boot-hello]()
+- [x] [spring-boot-mybatis]()
+- [ ] [spring-boot-mybatis-plus]()
+- [ ] [spring-boot-jpa]()
+- [ ] [spring-boot-flyway]()
+- [ ] [spring-boot-swagger]()
+
+## 接口文档
+
+使用 [Apifox](https://www.apifox.cn/) 进行 API 文档管理和接口测试。
+
+文档地址：[https://www.apifox.cn/web/project/1769409](https://www.apifox.cn/web/project/1769409)
