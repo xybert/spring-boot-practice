@@ -1,10 +1,12 @@
 package com.xybert.springbootmybatisplus.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -18,11 +20,12 @@ import java.util.Date;
 
 @Component
 @Data
-@Builder
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName(value = "user")
-public class User implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class User extends Model<User> implements Serializable {
 
     /**
      * 逐渐

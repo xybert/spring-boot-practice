@@ -1,9 +1,9 @@
 package com.xybert.springbootmybatis.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -17,7 +17,7 @@ import java.util.Date;
 
 @Component
 @Data
-@Builder
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {

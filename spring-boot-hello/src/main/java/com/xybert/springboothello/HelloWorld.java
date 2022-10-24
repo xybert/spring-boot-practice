@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWorld {
 
     private final static String HELLO = "Hello";
+    private final static String DEFAULT_OBJECT = "world";
 
     @GetMapping("/world")
     public String helloWorld(@RequestParam(name = "object", required = false) String object) {
         if (StringUtils.isBlank(object)) {
-            object = "world";
+            object = DEFAULT_OBJECT;
         }
         return String.format("%s, %s", HELLO, object);
     }

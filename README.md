@@ -1,4 +1,6 @@
-# <center>[spring-boot-practice](https://github.com/xybert/spring-boot-practice)</center>
+<h1 align="center">
+  <a href="https://github.com/xybert/spring-boot-practice" target="_blank">spring-boot-practice</a>
+</h1>
 
 <p align="center">
   <a href="https://github.com/xybert/spring-boot-practice/actions"></a><img alt="GitHub Workflow Status" src="https://github.com/xybert/spring-boot-practice/actions/workflows/dev.yml/badge.svg?branch=dev">
