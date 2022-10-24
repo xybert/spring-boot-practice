@@ -47,6 +47,27 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- spring-boot-hello -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-hello</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <!-- spring-boot-mybatis -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-mybatis</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <!-- spring-boot-mybatis-plus -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-mybatis-plus</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
@@ -114,27 +135,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-
-            <!-- spring-boot-hello -->
-            <dependency>
-                <groupId>com.xybert</groupId>
-                <artifactId>spring-boot-hello</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-
-            <!-- spring-boot-mybatis -->
-            <dependency>
-                <groupId>com.xybert</groupId>
-                <artifactId>spring-boot-mybatis</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-
-            <!-- spring-boot-mybatis-plus -->
-            <dependency>
-                <groupId>com.xybert</groupId>
-                <artifactId>spring-boot-mybatis-plus</artifactId>
-                <version>1.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

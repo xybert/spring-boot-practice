@@ -1,6 +1,6 @@
 package com.xybert.springbootmybatis.controller;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 import com.xybert.springbootmybatis.entity.User;
 import com.xybert.springbootmybatis.service.UserService;
 import org.springframework.validation.annotation.Validated;

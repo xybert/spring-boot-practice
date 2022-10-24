@@ -17,6 +17,7 @@
     <properties>
         <mybatis.spring.version>2.2.2</mybatis.spring.version>
         <mybatis.version>3.5.11</mybatis.version>
+        <jetbrains-annotations.version>13.0</jetbrains-annotations.version>
     </properties>
 
     <dependencies>
@@ -89,6 +90,12 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>${jetbrains-annotations.version}</version>
         </dependency>
     </dependencies>
 
