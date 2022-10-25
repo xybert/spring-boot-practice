@@ -1,6 +1,5 @@
 package com.xybert.springboothello;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,13 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWorld {
 
     private final static String HELLO = "Hello";
-    private final static String DEFAULT_OBJECT = "world";
 
     @GetMapping("/world")
-    public String helloWorld(@RequestParam(name = "object", required = false) String object) {
-        if (StringUtils.isBlank(object)) {
-            object = DEFAULT_OBJECT;
-        }
+    public String helloWorld(@RequestParam(name = "object", required = false, defaultValue = "world") String object) {
         return String.format("%s, %s", HELLO, object);
     }
 }

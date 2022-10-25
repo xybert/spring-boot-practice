@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -25,7 +24,7 @@ import java.util.Date;
 @AllArgsConstructor
 @TableName(value = "user")
 @EqualsAndHashCode(callSuper = true)
-public class User extends Model<User> implements Serializable {
+public class User extends Model<User> {
 
     /**
      * 逐渐
@@ -78,12 +77,12 @@ public class User extends Model<User> implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(value = "create_time")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
     /**
      * 更新时间
      */
-    @TableField(value = "update_time")
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 }

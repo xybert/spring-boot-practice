@@ -10,4 +10,20 @@ import com.xybert.springbootmybatisplus.entity.User;
  */
 
 public interface UserService extends IService<User> {
+//
+//    /**
+//     * 添加用户
+//     *
+//     * @param userInfo 用户信息
+//     * @return User
+//     */
+//    User insertUser(User userInfo);
+//
+//    /**
+//     * 批量添加用户
+//     *
+//     * @param userInfos 用户信息列表
+//     * @return List<User>
+//     */
+//    List<User> insertBatch(List<User> userInfos);
 }
