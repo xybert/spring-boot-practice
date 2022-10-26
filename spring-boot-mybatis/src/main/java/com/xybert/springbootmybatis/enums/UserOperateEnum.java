@@ -4,9 +4,9 @@ import com.xybert.springbootmybatis.exception.ErrorCodeBase;
 import lombok.Getter;
 
 /**
- * @description 用户操作失败状态码
  * @author xybert
- * @date  2022/10/19 16:06
+ * @description 用户操作失败状态码
+ * @date 2022/10/19 16:06
  */
 
 @Getter

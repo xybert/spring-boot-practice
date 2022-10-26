@@ -31,7 +31,7 @@ public interface ErrorCodeBase {
     /**
      * 格式化错误信息
      *
-     * @param msg 错误信息
+     * @param msg  错误信息
      * @param args args
      * @return String
      */

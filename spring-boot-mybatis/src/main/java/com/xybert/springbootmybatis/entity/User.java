@@ -10,9 +10,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @description User 实体类
  * @author xybert
- * @date  2022/10/18 14:42
+ * @description User 实体类
+ * @date 2022/10/18 14:42
  */
 
 @Component

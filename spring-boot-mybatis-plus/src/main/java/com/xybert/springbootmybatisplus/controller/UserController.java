@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @description User 控制类
  * @author xybert
+ * @description User 控制类
  * @date 2022/10/24 19:32
  */
 

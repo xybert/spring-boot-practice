@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.xybert.springbootmybatisplus.entity.User;
 
 /**
- * @description  UserService
  * @author xybert
+ * @description UserService
  * @date 2022/10/24 18:20
  */
 

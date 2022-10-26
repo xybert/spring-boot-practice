@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * @description User 实体类
  * @author xybert
+ * @description User 实体类
  * @date 2022/10/24 17:06
  */
 

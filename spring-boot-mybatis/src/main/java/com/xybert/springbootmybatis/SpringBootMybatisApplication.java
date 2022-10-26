@@ -5,8 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @description spring-boot-mybatis启动类
  * @author xybert
+ * @description spring-boot-mybatis启动类
  * @date 2022/10/18 11:28
  */
 

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @description 输出 hello，world
  * @author xybert
+ * @description 输出 hello，world
  * @date 2022/10/17 16:33
  */
 

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * @description CustomMetaObjectHandler 自定义元数据处理接口
  * @author xybert
+ * @description CustomMetaObjectHandler 自定义元数据处理接口
  * @date 2022/10/25 09:52
  */
 

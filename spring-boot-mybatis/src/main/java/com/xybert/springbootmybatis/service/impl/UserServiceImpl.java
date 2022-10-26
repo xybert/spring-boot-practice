@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @description 用户增删改查
  * @author xybert
+ * @description 用户增删改查
  * @date 2022/10/18 14:40
  */
 
@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
      * 成功则返回修改后的信息，失败返回修改前的信息
      *
      * @param userInfo 用户
-     * @param id 用户id
+     * @param id       用户id
      * @return User 用户
      */
     @Override

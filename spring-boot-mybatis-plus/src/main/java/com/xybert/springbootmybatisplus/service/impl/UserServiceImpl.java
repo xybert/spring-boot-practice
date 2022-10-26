@@ -6,17 +6,12 @@ import com.xybert.springbootmybatisplus.mapper.UserMapper;
 import com.xybert.springbootmybatisplus.service.UserService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 /**
- * @description  UserServiceImpl
  * @author xybert
- * @date  2022/10/24 18:22
+ * @description UserServiceImpl
+ * @date 2022/10/24 18:22
  */
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-
-    @Resource
-    private UserMapper userMapper;
 }
