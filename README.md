@@ -17,12 +17,13 @@
 
 ## 模块介绍
 
-- [x] [spring-boot-hello]()
-- [x] [spring-boot-mybatis]()
+- [x] [spring-boot-hello](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-hello)
+- [x] [spring-boot-mybatis](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-mybatis)
 - [ ] [spring-boot-mybatis-plus]()
 - [ ] [spring-boot-jpa]()
 - [ ] [spring-boot-flyway]()
 - [ ] [spring-boot-swagger]()
+- [x] [spring-boot-upload](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-upload)
 
 ## 接口文档
 
