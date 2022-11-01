@@ -102,15 +102,15 @@ public class BaseResult<T> implements Serializable {
         BaseResultCode resultCode = new BaseResultCode();
         for (Method method : methods) {
             try {
-                if (method.getName().equals("getCode")) {
+                if ("getCode".equals(method.getName())) {
                     resultCode.setCode(method.invoke(t).toString());
                     continue;
                 }
-                if (method.getName().equals("getCnMsg")) {
+                if ("getCnMsg".equals(method.getName())) {
                     resultCode.setCnMsg(method.invoke(t).toString());
                     continue;
                 }
-                if (method.getName().equals("getEnMsg")) {
+                if ("getEnMsg".equals(method.getName())) {
                     resultCode.setEnMsg(method.invoke(t).toString());
                 }
             } catch (IllegalAccessException | InvocationTargetException e) {
@@ -137,15 +137,15 @@ public class BaseResult<T> implements Serializable {
         BaseResultCode resultCode = new BaseResultCode();
         for (Method method : methods) {
             try {
-                if (method.getName().equals("getCode")) {
+                if ("getCode".equals(method.getName())) {
                     resultCode.setCode(method.invoke(t).toString());
                     continue;
                 }
-                if (method.getName().equals("getCnMsg")) {
+                if ("getCnMsg".equals(method.getName())) {
                     resultCode.setCnMsg(method.invoke(t).toString());
                     continue;
                 }
-                if (method.getName().equals("getEnMsg")) {
+                if ("getEnMsg".equals(method.getName())) {
                     resultCode.setEnMsg(method.invoke(t).toString());
                 }
             } catch (IllegalAccessException | InvocationTargetException e) {
@@ -407,15 +407,15 @@ public class BaseResult<T> implements Serializable {
         BaseResultCode resultCode = new BaseResultCode();
         for (Method method : methods) {
             try {
-                if (method.getName().equals("getCode")) {
+                if ("getCode".equals(method.getName())) {
                     resultCode.setCode(method.invoke(t).toString());
                     continue;
                 }
-                if (method.getName().equals("getCnMsg")) {
+                if ("getCnMsg".equals(method.getName())) {
                     resultCode.setCnMsg(method.invoke(t).toString());
                     continue;
                 }
-                if (method.getName().equals("getEnMsg")) {
+                if ("getEnMsg".equals(method.getName())) {
                     resultCode.setEnMsg(method.invoke(t).toString());
                 }
             } catch (IllegalAccessException | InvocationTargetException e) {
