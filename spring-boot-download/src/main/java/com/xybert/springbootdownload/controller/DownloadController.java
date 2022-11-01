@@ -1,10 +1,7 @@
 package com.xybert.springbootdownload.controller;
 
 import com.xybert.springbootdownload.service.DownloadService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -16,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/file")
 public class DownloadController {
 
     @Resource
     private DownloadService downloadService;
 
-    @GetMapping("/file")
-    public String downloadSingleFile(HttpServletResponse response, @RequestParam("filename") String filename) {
-        return downloadService.downloadSingleFile(response, filename) ? "success" : "fail";
+    @GetMapping("/single")
+    public void downloadSingleFile(HttpServletResponse response, @RequestParam("filename") String filename) {
+        downloadService.downloadSingleFile(response, filename);
     }
 }
