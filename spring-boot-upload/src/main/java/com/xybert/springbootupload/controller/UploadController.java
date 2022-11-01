@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,11 +24,11 @@ public class UploadController {
 
     @PostMapping("/single")
     public BaseResult<FileVO> uploadSingleFile(@RequestParam("file") MultipartFile file) {
-        return BaseResult.success(Collections.singletonList(uploadService.uploadSingleFile(file)));
+        return uploadService.uploadSingleFile(file);
     }
 
     @PostMapping("/list")
     public BaseResult<FileVO> uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) {
-        return BaseResult.success(uploadService.uploadMultipleFiles(files));
+        return uploadService.uploadMultipleFiles(files);
     }
 }

@@ -15,7 +15,10 @@ spring:
       max-file-size: 100MB
       # 总上传大小限制
       max-request-size: 10000MB
+  web:
+    resources:
+      static-locations: classpath:static/
 
 file:
   upload:
-    path: F:\wallpaper
+    path: static/

@@ -1,5 +1,6 @@
 package com.xybert.springbootupload.service;
 
+import com.xybert.springbootupload.common.BaseResult;
 import com.xybert.springbootupload.vo.FileVO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,15 +19,15 @@ public interface UploadService {
      * 单文件上传
      *
      * @param file     文件
-     * @return FileVO 文件信息
+     * @return BaseResult<FileVO> 文件信息
      */
-    FileVO uploadSingleFile(MultipartFile file);
+    BaseResult<FileVO> uploadSingleFile(MultipartFile file);
 
     /**
      * 多文件上传
      *
      * @param files 文件列表
-     * @return List<FileVo> 文件信息列表
+     * @return BaseResult<FileVo> 文件信息列表
      */
-    List<FileVO> uploadMultipleFiles(List<MultipartFile> files);
+    BaseResult<FileVO> uploadMultipleFiles(List<MultipartFile> files);
 }
