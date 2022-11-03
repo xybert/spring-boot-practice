@@ -4,13 +4,14 @@ import cn.hutool.http.ContentType;
 import com.xybert.springbootdownload.common.BaseResult;
 import com.xybert.springbootdownload.service.DownloadService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
+import org.springframework.util.StreamUtils;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.util.List;
 
@@ -24,38 +25,17 @@ import java.util.List;
 @Service
 public class DownloadServiceImpl implements DownloadService {
 
-    @Value("${file.download.path}")
-    private String downloadFilePath;
-
     @Override
-    public void downloadSingleFile(HttpServletResponse response, String filename) {
-        String path;
-        try {
-            path = new File(ResourceUtils.getURL("classpath:").getPath()).getAbsolutePath() +
-                    File.separator + downloadFilePath;
-        } catch (FileNotFoundException e) {
-            log.error("文件路径不存在");
-            return;
-        }
-        File file = new File(path + filename);
-        if (!file.exists()) {
-            log.error("文件不存在：{}", filename);
-            return;
-        }
-        response.reset();
+    public void downloadSingleFile(HttpServletResponse response, File file) {
+        String fileName = file.getName();
         response.setContentType(ContentType.OCTET_STREAM.getValue());
-        response.setHeader("Content-Disposition", "attachment;filename=" +
-                new String(filename.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
+        response.setContentLengthLong(file.length());
         try(BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
-            byte[] buff = new byte[1024];
-            OutputStream os  = response.getOutputStream();
-            int i;
-            while ((i = bis.read(buff)) != -1) {
-                os.write(buff, 0, i);
-                os.flush();
-            }
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" +
+                    URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20"));
+            StreamUtils.copy(bis, response.getOutputStream());
         } catch (IOException e) {
-            log.error("文件下载失败：{}", filename);
+            log.error("文件下载失败：{}", fileName);
         }
     }
 

@@ -3,6 +3,7 @@ package com.xybert.springbootdownload.service;
 import com.xybert.springbootdownload.common.BaseResult;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -17,9 +18,9 @@ public interface DownloadService {
      * 单文件下载
      *
      * @param response 响应体
-     * @param filename 文件名称
+     * @param file 文件
      */
-    void downloadSingleFile(HttpServletResponse response, String filename);
+    void downloadSingleFile(HttpServletResponse response, File file);
 
     /**
      * 多文件下载
