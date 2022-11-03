@@ -17,7 +17,7 @@
     <properties>
         <mybatis.spring.version>2.2.2</mybatis.spring.version>
         <mybatis.version>3.5.11</mybatis.version>
-        <jetbrains-annotations.version>13.0</jetbrains-annotations.version>
+        <jetbrains-annotations.version>23.0.0</jetbrains-annotations.version>
     </properties>
 
     <dependencies>
@@ -104,7 +104,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.7.4</version>
             </plugin>
         </plugins>
     </build>
