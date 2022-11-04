@@ -14,12 +14,6 @@
     <packaging>jar</packaging>
     <name>spring-boot-mybatis</name>
 
-    <properties>
-        <mybatis.spring.version>2.2.2</mybatis.spring.version>
-        <mybatis.version>3.5.11</mybatis.version>
-        <jetbrains-annotations.version>23.0.0</jetbrains-annotations.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -41,13 +35,7 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${mybatis.spring.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.mybatis</groupId>-->
-<!--            <artifactId>mybatis</artifactId>-->
-<!--            <version>${mybatis.version}</version>-->
-<!--        </dependency>-->
 
         <!-- mysql -->
         <dependency>
@@ -95,7 +83,6 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>${jetbrains-annotations.version}</version>
         </dependency>
     </dependencies>
 

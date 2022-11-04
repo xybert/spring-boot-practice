@@ -14,9 +14,6 @@
     <packaging>jar</packaging>
     <name>spring-boot-hello</name>
 
-    <properties>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
