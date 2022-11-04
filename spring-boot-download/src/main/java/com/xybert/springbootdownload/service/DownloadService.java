@@ -1,7 +1,5 @@
 package com.xybert.springbootdownload.service;
 
-import com.xybert.springbootdownload.common.BaseResult;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.List;
@@ -23,11 +21,11 @@ public interface DownloadService {
     void downloadSingleFile(HttpServletResponse response, File file);
 
     /**
-     * 多文件下载
+     * 文件批量下载
+     * 多个文件压缩成一个zip包进行下载
      *
      * @param response 响应体
-     * @param filenames 文件名称列表
-     * @return BaseResult
+     * @param files 文件列表
      */
-    BaseResult<?> downloadMultipleFile(HttpServletResponse response, List<String> filenames);
+    void downloadMultipleFile(HttpServletResponse response, List<File> files);
 }

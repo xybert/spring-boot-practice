@@ -1,8 +1,8 @@
 package com.xybert.springbootdownload.service.impl;
 
 import cn.hutool.http.ContentType;
-import com.xybert.springbootdownload.common.BaseResult;
 import com.xybert.springbootdownload.service.DownloadService;
+import com.xybert.springbootdownload.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @author xybert
@@ -43,11 +44,21 @@ public class DownloadServiceImpl implements DownloadService {
      * 多文件下载
      *
      * @param response  响应体
-     * @param filenames 文件名称列表
-     * @return BaseResult
+     * @param files 文件列表
      */
     @Override
-    public BaseResult<?> downloadMultipleFile(HttpServletResponse response, List<String> filenames) {
-        return null;
+    public void downloadMultipleFile(HttpServletResponse response, List<File> files) {
+        String zipName = "data.zip";
+        try(ZipOutputStream zos = new ZipOutputStream(response.getOutputStream())) {
+            response.setContentType(ContentType.MULTIPART.getValue());
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" +
+                    URLEncoder.encode(zipName, "UTF-8").replaceAll("\\+", "%20"));
+            for (File file : files) {
+                FileUtil.zipFile(file, zos);
+                response.flushBuffer();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
