@@ -3,7 +3,7 @@ USE `spring-boot-practice`;
 CREATE TABLE IF NOT EXISTS `role`
 (
     `id`             bigint      NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `name`           varchar(50) NOT NULL COMMENT '角色名称',
+    `name`           varchar(64) NOT NULL COMMENT '角色名称',
     `create_user_id` bigint      NOT NULL COMMENT '创建人',
     `update_user_id` bigint      NOT NULL COMMENT '修改人',
     `create_time`    timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

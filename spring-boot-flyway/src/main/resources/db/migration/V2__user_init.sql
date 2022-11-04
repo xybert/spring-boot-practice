@@ -6,13 +6,13 @@ USE `spring-boot-practice`;
 CREATE TABLE IF NOT EXISTS `user`
 (
     `id`          bigint      NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `name`        varchar(50) NOT NULL COMMENT '用户名',
+    `name`        varchar(64) NOT NULL COMMENT '用户名',
     `sex`         int         NOT NULL COMMENT '性别 1-男 0-女',
     `age`         int         NOT NULL COMMENT '年龄',
-    `tel`         varchar(20)          DEFAULT '' COMMENT '联系电话',
-    `email`       varchar(50)          DEFAULT '' COMMENT '邮箱',
-    `status`      int         NOT NULL DEFAULT 1 COMMENT '状态 1-启用 0-禁用',
-    `role`        int         NOT NULL DEFAULT 3 COMMENT '角色 1-超级管理员 2-管理员 3-普通用户',
+    `tel`         varchar(32)          DEFAULT '' COMMENT '联系电话',
+    `email`       varchar(32)          DEFAULT '' COMMENT '邮箱',
+    `status`      tinyint     NOT NULL DEFAULT 1 COMMENT '状态 1-启用 0-禁用',
+    `role`        tinyint     NOT NULL DEFAULT 3 COMMENT '角色 1-超级管理员 2-管理员 3-普通用户',
     `create_time` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     CONSTRAINT user_name_uindex
