@@ -6,8 +6,8 @@ CREATE TABLE IF NOT EXISTS `role`
     `name`           varchar(64) NOT NULL COMMENT '角色名称',
     `create_user_id` bigint      NOT NULL COMMENT '创建人',
     `update_user_id` bigint      NOT NULL COMMENT '修改人',
-    `create_time`    timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_time`    timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    `create_time`    DATETIME    NOT NULL DEFAULT NOW() COMMENT '创建时间',
+    `update_time`    DATETIME    NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '修改时间',
     CONSTRAINT user_name_uindex
         UNIQUE (name),
     PRIMARY KEY (`id`) USING BTREE

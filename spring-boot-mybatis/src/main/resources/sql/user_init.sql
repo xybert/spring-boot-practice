@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS `user`
     `email`       varchar(64)          DEFAULT '' COMMENT '邮箱',
     `status`      tinyint     NOT NULL DEFAULT 1 COMMENT '状态 1-启用 0-禁用',
     `role`        tinyint     NOT NULL DEFAULT 3 COMMENT '角色 1-超级管理员 2-管理员 3-普通用户',
-    `create_time` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_time` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    `create_time` DATETIME   NOT NULL DEFAULT NOW() COMMENT '创建时间',
+    `update_time` DATETIME   NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '修改时间',
     CONSTRAINT user_name_uindex
         UNIQUE (name),
     PRIMARY KEY (`id`) USING BTREE
