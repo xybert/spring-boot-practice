@@ -13,7 +13,16 @@
 
 ## 项目简述
 
+
+
 ## 开发环境
+
+- JDK 1.8.0_202
+- Spring Boot 2.7.4
+- Maven 3.6.1
+- MySQL 8.0.31
+- IntelliJ IDEA 2022.1.3 (Ultimate Edition)
+- ...
 
 ## 开发情况
 
@@ -22,9 +31,10 @@
 - [ ] [spring-boot-mybatis-plus](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-mybatis-plus)
 - [ ] [spring-boot-jpa]()
 - [x] [spring-boot-flyway](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-flyway)
-- [ ] [spring-boot-swagger]()
 - [x] [spring-boot-upload](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-upload)
 - [x] [spring-boot-download](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-download)
+- [x] [spring-boot-swagger](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-swagger)
+- [x] [spring-boot-knife4j](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-knife4j)
 
 ## 接口文档
 
