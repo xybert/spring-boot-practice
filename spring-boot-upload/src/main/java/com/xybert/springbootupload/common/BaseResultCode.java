@@ -17,13 +17,19 @@ public class BaseResultCode implements Serializable {
 
     private static final long serialVersionUID = 58015867066694984L;
 
-    //状态码
+    /**
+     * 状态码
+     */
     String code;
 
-    //中文返回信息
+    /**
+     * 中文返回信息
+     */
     String cnMsg;
 
-    //英文返回信息
+    /**
+     * 英文返回信息
+     */
     String enMsg;
 
     /**
