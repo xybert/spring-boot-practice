@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * @author xybert
  * @description 异常基类
- * @date 2022/10/30 21:51
+ * @date 2022/11/10 16:51
  */
 
 public interface ExceptionBase {

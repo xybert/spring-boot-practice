@@ -3,7 +3,7 @@ package com.xybert.springbootswagger.exception;
 /**
  * @author xybert
  * @description 全局异常基类
- * @date 2022/10/30 22:00
+ * @date 2022/11/10 16:51
  */
 
 public interface ErrorCodeBase {

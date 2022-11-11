@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author xybert
  * @description 统一返回结果
- * @date 2022/10/30 21:51
+ * @date 2022/11/10 16:51
  */
 
 public class BaseResult<T> implements Serializable {
