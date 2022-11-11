@@ -5,7 +5,7 @@ server:
 
 logging:
   level:
-    com.xybert.springbootupload: debug
+    com.xybert.springbootdownload: debug
 
 spring:
   web:

@@ -13,8 +13,8 @@ spring:
 
 logging:
   level:
-    com.xybert.springbootmybatis: debug
-    com.xybert.springbootmybatis.mapper: trace
+    com.xybert.springbootmybatisplus: debug
+    com.xybert.springbootmybatisplus.mapper: trace
 
 mybatis-plus:
   configuration:
