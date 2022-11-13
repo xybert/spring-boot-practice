@@ -8,12 +8,12 @@ import java.util.Date;
 
 /**
  * @author xybert
- * @description CustomMetaObjectHandler 自定义元数据处理接口
+ * @description DateMetaHandler 日期元数据处理接口
  * @date 2022/10/25 09:52
  */
 
 @Component
-public class CustomMetaObjectHandler implements MetaObjectHandler {
+public class DateMetaHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         this.strictInsertFill(metaObject, "createTime", Date.class, new Date());
