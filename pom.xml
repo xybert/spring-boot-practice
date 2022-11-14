@@ -16,6 +16,7 @@
     </modules>
 
     <properties>
+        <project.version>1.0.0</project.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -59,49 +60,56 @@
             <dependency>
                 <groupId>com.xybert</groupId>
                 <artifactId>spring-boot-hello</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- spring-boot-mybatis -->
             <dependency>
                 <groupId>com.xybert</groupId>
                 <artifactId>spring-boot-mybatis</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- spring-boot-mybatis-plus -->
             <dependency>
                 <groupId>com.xybert</groupId>
                 <artifactId>spring-boot-mybatis-plus</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- spring-boot-flyway -->
             <dependency>
                 <groupId>com.xybert</groupId>
                 <artifactId>spring-boot-flyway</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- spring-boot-upload -->
             <dependency>
                 <groupId>com.xybert</groupId>
                 <artifactId>spring-boot-upload</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- spring-boot-download -->
             <dependency>
                 <groupId>com.xybert</groupId>
                 <artifactId>spring-boot-download</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- spring-boot-swagger -->
             <dependency>
                 <groupId>com.xybert</groupId>
                 <artifactId>spring-boot-swagger</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-knife4j -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-knife4j</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
