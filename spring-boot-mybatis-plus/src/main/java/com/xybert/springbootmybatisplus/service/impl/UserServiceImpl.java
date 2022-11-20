@@ -112,12 +112,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public BaseResult updateUserById(User userInfo, Long id) {
         userInfo.setId(id);
-        QueryWrapper queryWrapper = new QueryWrapper<>();
-        int update = userMapper.update(userInfo, queryWrapper);
-        // int updateById = userMapper.updateById(userInfo);
+        // QueryWrapper queryWrapper = new QueryWrapper<>();
+        // int update = userMapper.update(userInfo, queryWrapper);
+         int updateById = userMapper.updateById(userInfo);
         // ActiveRecord模式
         // boolean update = userInfo.update(queryWrapper);
-        if (update == 0) {
+        if (updateById == 0) {
             return BaseResult.fail();
         }
         return BaseResult.success();

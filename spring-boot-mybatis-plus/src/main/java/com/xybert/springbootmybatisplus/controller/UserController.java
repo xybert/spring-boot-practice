@@ -62,8 +62,8 @@ public class UserController {
     }
 
     @GetMapping("/page")
-    public BaseResult<IPage> selectPage(@RequestParam("current") int current, @RequestParam("size") int size) {
-        IPage<User> page = userService.selectPage(current, size);
+    public BaseResult<IPage> selectPage(@RequestParam("current") int current, @RequestParam("pageSize") int pageSize) {
+        IPage<User> page = userService.selectPage(current, pageSize);
         // Page<User> userPage = new Page<>(current, size);
         // QueryWrapper queryWrapper = new QueryWrapper<>();
         // IPage<User> page = userService.page(userPage, queryWrapper);
