@@ -28,7 +28,7 @@
 
 - [x] [spring-boot-hello](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-hello)
 - [x] [spring-boot-mybatis](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-mybatis)
-- [ ] [spring-boot-mybatis-plus](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-mybatis-plus)
+- [x] [spring-boot-mybatis-plus](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-mybatis-plus)
 - [ ] [spring-boot-jpa]()
 - [x] [spring-boot-flyway](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-flyway)
 - [x] [spring-boot-upload](https://github.com/xybert/spring-boot-practice/tree/dev/spring-boot-upload)
