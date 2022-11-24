@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `student`
     `score`       FLOAT                DEFAULT 0 COMMENT '总分',
     `clazz_rank`  int COMMENT '班级排名',
     `grade_rank`  int COMMENT '年级排名',
+    `deleted`     tinyint     NOT NULL DEFAULT 0 COMMENT '逻辑删除',
     `create_time` DATETIME    NOT NULL DEFAULT NOW() COMMENT '创建时间',
     `update_time` DATETIME    NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '修改时间',
     CONSTRAINT stuNo_uindex
