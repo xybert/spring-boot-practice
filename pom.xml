@@ -32,6 +32,7 @@
         <flyway.version>5.2.1</flyway.version>
         <lombok.version>1.18.24</lombok.version>
         <hutool.version>5.8.8</hutool.version>
+        <easyexcel.version>3.0.5</easyexcel.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <common-io.version>2.11.0</common-io.version>
@@ -109,6 +110,13 @@
             <dependency>
                 <groupId>com.xybert</groupId>
                 <artifactId>spring-boot-knife4j</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-easyexcel -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-easyexcel</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -192,6 +200,13 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- easyexcel -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.version}</version>
             </dependency>
 
             <!-- commons-lang3 -->
