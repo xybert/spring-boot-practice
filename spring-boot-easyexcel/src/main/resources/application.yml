@@ -1,11 +1,11 @@
 server:
   port: 9001
   servlet:
-    context-path: /springboot/practice/flyway
+    context-path: /springboot/practice/easyexcel
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/spring-boot-practice?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&autoReconnect=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/spring-boot-practice?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&autoReconnect=true&serverTimezone=GMT%2B8
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
