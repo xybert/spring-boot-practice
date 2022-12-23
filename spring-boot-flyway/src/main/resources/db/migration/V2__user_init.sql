@@ -5,19 +5,23 @@ USE `spring-boot-practice`;
 -- 创建表 user
 CREATE TABLE IF NOT EXISTS `user`
 (
-    `id`          bigint      NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `name`        varchar(64) NOT NULL COMMENT '用户名',
-    `sex`         tinyint     NOT NULL COMMENT '性别 1-男 0-女',
-    `age`         int         NOT NULL COMMENT '年龄',
-    `tel`         varchar(32)          DEFAULT '' COMMENT '联系电话',
-    `email`       varchar(64)          DEFAULT '' COMMENT '邮箱',
-    `status`      tinyint     NOT NULL DEFAULT 1 COMMENT '状态 1-启用 0-禁用',
-    `role`        tinyint     NOT NULL DEFAULT 3 COMMENT '角色 1-超级管理员 2-管理员 3-普通用户',
+    `id`          BIGINT      NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `account`        VARCHAR(64) NOT NULL COMMENT '用户名',
+    `sex`         TINYINT COMMENT '性别 1-男 0-女',
+    `age`         INT COMMENT '年龄',
+    `tel`         VARCHAR(32)          DEFAULT '' COMMENT '联系电话',
+    `email`       VARCHAR(64)          DEFAULT '' COMMENT '邮箱',
+    `status`      TINYINT     NOT NULL DEFAULT 1 COMMENT '状态 1-启用 0-禁用',
+    `create_user` BIGINT      NOT NULL DEFAULT 1 COMMENT '创建人',
+    `update_user` BIGINT      NOT NULL DEFAULT 1 COMMENT '更新人',
     `create_time` DATETIME    NOT NULL DEFAULT NOW() COMMENT '创建时间',
     `update_time` DATETIME    NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '修改时间',
-    CONSTRAINT user_name_uindex
-        UNIQUE (name),
-    PRIMARY KEY (`id`) USING BTREE
+    `deleted`     TINYINT     NOT NULL DEFAULT 0 COMMENT '逻辑删除',
+    CONSTRAINT account_uindex
+        UNIQUE (account),
+    PRIMARY KEY (`id`) USING BTREE,
+    FOREIGN KEY (`create_user`) REFERENCES user(`id`),
+    FOREIGN KEY (`update_user`) REFERENCES user(`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
     COMMENT '用户表';
