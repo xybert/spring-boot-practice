@@ -7,6 +7,7 @@ import com.xybert.springbootupload.common.BaseResult;
 import com.xybert.springbootupload.service.UploadService;
 import com.xybert.springbootupload.vo.FileVO;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
@@ -67,7 +68,7 @@ public class UploadServiceImpl implements UploadService {
         }
         FileVO fileVO = new FileVO();
         try {
-            file.transferTo(new File(newFileName));
+            FileUtils.copyInputStreamToFile(file.getInputStream(), dest);
             fileVO.setName(rawFileName);
             fileVO.setExtension(fileType);
             fileVO.setSize(getFileSize(file));
