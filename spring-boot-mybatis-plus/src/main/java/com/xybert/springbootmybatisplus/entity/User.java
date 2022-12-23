@@ -27,7 +27,7 @@ import java.util.Date;
 public class User extends Model<User> {
 
     /**
-     * 逐渐
+     * 主键
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
