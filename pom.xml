@@ -39,6 +39,7 @@
         <guava.version>31.1-jre</guava.version>
         <fastjson.version>2.0.16</fastjson.version>
         <jetbrains-annotations.version>23.0.0</jetbrains-annotations.version>
+        <httpcore.version>4.4.15</httpcore.version>
     </properties>
 
     <repositories>
@@ -249,6 +250,12 @@
                 <groupId>org.jetbrains</groupId>
                 <artifactId>annotations</artifactId>
                 <version>${jetbrains-annotations.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${httpcore.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
