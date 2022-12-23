@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.xybert</groupId>
+    <artifactId>spring-boot-practice</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>spring-boot-practice</name>
+
+    <modules>
+        <module>spring-boot-hello</module>
+        <module>spring-boot-mybatis</module>
+        <module>spring-boot-mybatis-plus</module>
+        <module>spring-boot-flyway</module>
+        <module>spring-boot-upload</module>
+        <module>spring-boot-download</module>
+        <module>spring-boot-swagger</module>
+        <module>spring-boot-knife4j</module>
+        <module>spring-boot-easyexcel</module>
+    </modules>
+
+    <properties>
+        <project.version>1.0.0</project.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spring-boot.version>2.7.4</spring-boot.version>
+        <jdbc-spring.version>2.6.0</jdbc-spring.version>
+        <mybatis.spring.version>2.2.2</mybatis.spring.version>
+        <mybatis.version>3.5.11</mybatis.version>
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <mysql.version>8.0.30</mysql.version>
+        <druid.version>1.2.12</druid.version>
+        <flyway.version>5.2.1</flyway.version>
+        <lombok.version>1.18.24</lombok.version>
+        <hutool.version>5.8.8</hutool.version>
+        <easyexcel.version>3.0.5</easyexcel.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <common-io.version>2.11.0</common-io.version>
+        <guava.version>31.1-jre</guava.version>
+        <fastjson.version>2.0.16</fastjson.version>
+        <jetbrains-annotations.version>23.0.0</jetbrains-annotations.version>
+        <httpcore.version>4.4.15</httpcore.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring-boot-hello -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-hello</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-mybatis -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-mybatis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-mybatis-plus -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-mybatis-plus</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-flyway -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-flyway</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-upload -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-upload</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-download -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-download</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-swagger -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-swagger</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-knife4j -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-knife4j</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring-boot-easyexcel -->
+            <dependency>
+                <groupId>com.xybert</groupId>
+                <artifactId>spring-boot-easyexcel</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jdbc</artifactId>
+                <version>${jdbc-spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- mybatis-spring -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.version}</version>
+            </dependency>
+
+            <!-- mybatis原生 -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <!-- mybatis-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- mysql -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- flyway -->
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
+            </dependency>
+
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
+            </dependency>
+
+            <!-- hutool -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- easyexcel -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.version}</version>
+            </dependency>
+
+            <!-- commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <!-- commons-collections4 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
+
+            <!-- common-io -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${common-io.version}</version>
+            </dependency>
+
+            <!-- guava 工具库 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- jetbrains-annotations -->
+            <dependency>
+                <groupId>org.jetbrains</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${jetbrains-annotations.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${httpcore.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
