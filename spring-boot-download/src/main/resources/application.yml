@@ -1,0 +1,17 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /springboot/practice/download
+
+logging:
+  level:
+    com.xybert.springbootdownload: debug
+
+spring:
+  web:
+    resources:
+      static-locations: classpath:static/
+
+file:
+  download:
+    path: static/

@@ -1,0 +1,29 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /springboot/practice/mybatis-plus
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring-boot-practice?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&autoReconnect=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+
+logging:
+  level:
+    com.xybert.springbootmybatisplus: debug
+    com.xybert.springbootmybatisplus.mapper: trace
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      table-underline: true
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.xybert.springbootmybatisplus.entity
