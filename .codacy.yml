@@ -1,0 +1,11 @@
+---
+exclude_paths:
+  - '**.md'
+  - '**/**.md'
+  - '**/resources/**'
+  - '**/**.sql'
+  - '**.sql'
+  - '**.html'
+  - '**/static/**'
+  - '**/templates/**'
+  - '**/test/**'
