@@ -1,13 +1,17 @@
 package com.xybert.springbooteasyexcel.util;
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.read.listener.ReadListener;
+import com.alibaba.excel.write.handler.WriteHandler;
 import org.apache.poi.ss.formula.functions.T;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author xybert
@@ -356,5 +360,258 @@ public class EasyExcelUtils {
                                           Integer sheetNo, Integer headRowNum) {
         EasyExcelFactory.read(filePath).head(clazz).registerReadListener(readListener).sheet(sheetNo)
                 .headRowNumber(headRowNum).doRead();
+    }
+
+    /**
+     * 无模板写Excel
+     *
+     * @param outputStream outputStream
+     * @param head 表头数据
+     * @param data 表内容数据
+     */
+    public static void write(OutputStream outputStream, List<List<String>> head, List data) {
+        EasyExcelFactory.write(outputStream).head(head).sheet().doWrite(data);
+    }
+
+    /**
+     * 无模板写Excel
+     *
+     * @param outputStream outputStream
+     * @param head 表头数据
+     * @param data 表内容数据
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static void write(OutputStream outputStream, List<List<String>> head, List data, Integer sheetNo, String sheetName) {
+        EasyExcelFactory.write(outputStream).head(head).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     */
+    public static <T> void write(OutputStream outputStream, Class<T> clazz, List data) {
+        EasyExcelFactory.write(outputStream).head(clazz).sheet().doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static <T> void write(OutputStream outputStream, Class<T> clazz, List data, Integer sheetNo, String sheetName) {
+        EasyExcelFactory.write(outputStream).head(clazz).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param writeHandler 自定义处理器
+     */
+    public static <T> void write(OutputStream outputStream, Class<T> clazz, List data, WriteHandler writeHandler) {
+        EasyExcelFactory.write(outputStream).head(clazz).registerWriteHandler(writeHandler).sheet().doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param writeHandler 自定义处理器
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static <T> void write(OutputStream outputStream, Class<T> clazz, List data, WriteHandler writeHandler, Integer sheetNo, String sheetName) {
+        EasyExcelFactory.write(outputStream).head(clazz).registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel（包含某些字段）
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param includeCols 包含的字段名称
+     */
+    public static <T> void writeInclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> includeCols) {
+        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(includeCols).sheet().doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel（包含某些字段）
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param includeCols 包含的字段名称
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static <T> void writeInclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> includeCols, Integer sheetNo, String sheetName) {
+        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(includeCols).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel（包含某些字段）
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param includeCols 包含的字段名称
+     * @param writeHandler 自定义处理器
+     */
+    public static <T> void writeInclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> includeCols, WriteHandler writeHandler) {
+        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(includeCols).registerWriteHandler(writeHandler).sheet().doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel（包含某些字段）
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param includeCols 包含的字段名称
+     * @param writeHandler 自定义处理器
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static <T> void writeInclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> includeCols,
+                                        WriteHandler writeHandler, Integer sheetNo, String sheetName) {
+        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(includeCols)
+                .registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel（排除某些字段）
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param excludeCols 排除的字段名称
+     */
+    public static <T> void writeExclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> excludeCols) {
+        EasyExcelFactory.write(outputStream).head(clazz).excludeColumnFiledNames(excludeCols).sheet().doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel（排除某些字段）
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param excludeCols 排除的字段名称
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static <T> void writeExclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> excludeCols, Integer sheetNo, String sheetName) {
+        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(excludeCols).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel（排除某些字段）
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param excludeCols 包含的字段名称
+     * @param writeHandler 自定义处理器
+     */
+    public static <T> void writeExclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> excludeCols, WriteHandler writeHandler) {
+        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(excludeCols).registerWriteHandler(writeHandler).sheet().doWrite(data);
+    }
+
+    /**
+     * 有模板写Excel（排除某些字段）
+     *
+     * @param outputStream outputStream
+     * @param clazz 表头类
+     * @param data 表内容数据
+     * @param excludeCols 排除的字段名称
+     * @param writeHandler 自定义处理器
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static <T> void writeExclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> excludeCols,
+                                        WriteHandler writeHandler, Integer sheetNo, String sheetName) {
+        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(excludeCols)
+                .registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 根据填充模板文件写入文件
+     *
+     * @param outputStream outputStream
+     * @param templateFileName 填充模板
+     * @param data 表内容数据
+     */
+    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data){
+        EasyExcel.write(outputStream).withTemplate(templateFileName).sheet().doWrite(data);
+    }
+
+    /**
+     * 根据填充模板文件写入文件
+     *
+     * @param outputStream outputStream
+     * @param templateFileName 填充模板
+     * @param data 表内容数据
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, Integer sheetNo, String sheetName){
+        EasyExcel.write(outputStream).withTemplate(templateFileName).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 根据填充模板文件写入文件
+     *
+     * @param outputStream outputStream
+     * @param templateFileName 填充模板
+     * @param data 表内容数据
+     * @param writeHandler 自定义处理器
+     */
+    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, WriteHandler writeHandler){
+        EasyExcel.write(outputStream).withTemplate(templateFileName).registerWriteHandler(writeHandler).sheet().doWrite(data);
+    }
+
+    /**
+     * 根据填充模板文件写入文件
+     *
+     * @param outputStream outputStream
+     * @param templateFileName 填充模板
+     * @param data 表内容数据
+     * @param writeHandler 自定义处理器
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, WriteHandler writeHandler, Integer sheetNo, String sheetName){
+        EasyExcel.write(outputStream).withTemplate(templateFileName).registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data);
+    }
+
+    /**
+     * 根据填充模板文件写入文件
+     *
+     * @param outputStream outputStream
+     * @param templateFileName 填充模板
+     * @param data 表内容数据
+     * @param writeHandler 自定义处理器
+     * @param excludeCols 排除的字段名称
+     * @param sheetNo sheet页号，从0开始
+     * @param sheetName sheet名称
+     */
+    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, WriteHandler writeHandler, Set<String> excludeCols,
+                                     Integer sheetNo, String sheetName){
+        EasyExcel.write(outputStream).withTemplate(templateFileName).registerWriteHandler(writeHandler)
+                .excludeColumnFiledNames(excludeCols).sheet(sheetNo, sheetName).doWrite(data);
     }
 }

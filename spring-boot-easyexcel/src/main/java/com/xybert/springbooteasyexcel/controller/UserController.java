@@ -7,13 +7,11 @@ import com.xybert.springbooteasyexcel.exception.SystemException;
 import com.xybert.springbooteasyexcel.listener.UserListener;
 import com.xybert.springbooteasyexcel.service.UserService;
 import com.xybert.springbooteasyexcel.util.EasyExcelUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -37,5 +35,10 @@ public class UserController {
             throw new SystemException(SystemResultCode.EXCEL_PARSE_ERROR);
         }
         return BaseResult.success();
+    }
+
+    @GetMapping("/export")
+    public void exportUser(HttpServletResponse response) {
+        userService.exportUser(response);
     }
 }
