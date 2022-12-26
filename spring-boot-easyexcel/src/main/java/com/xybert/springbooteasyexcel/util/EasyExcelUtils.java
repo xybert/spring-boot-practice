@@ -1,7 +1,7 @@
 package com.xybert.springbooteasyexcel.util;
 
 import com.alibaba.excel.EasyExcelFactory;
-import com.xybert.springbooteasyexcel.listener.ExcelListener;
+import com.alibaba.excel.read.listener.ReadListener;
 import org.apache.poi.ss.formula.functions.T;
 
 import java.io.File;
@@ -243,10 +243,10 @@ public class EasyExcelUtils {
      *
      * @param inputStream inputStream
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      */
-    public static <T> void asyncReadModel(InputStream inputStream, Class<T> clazz, ExcelListener<T> excelListener) {
-        EasyExcelFactory.read(inputStream).head(clazz).registerReadListener(excelListener).sheet().doRead();
+    public static <T> void asyncReadModel(InputStream inputStream, Class<T> clazz, ReadListener<T> readListener) {
+        EasyExcelFactory.read(inputStream).head(clazz).registerReadListener(readListener).sheet().doRead();
     }
 
     /**
@@ -254,10 +254,10 @@ public class EasyExcelUtils {
      *
      * @param file 文件
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      */
-    public static <T> void asyncReadModel(File file, Class<T> clazz, ExcelListener<T> excelListener) {
-        EasyExcelFactory.read(file).head(clazz).registerReadListener(excelListener).sheet().doRead();
+    public static <T> void asyncReadModel(File file, Class<T> clazz, ReadListener<T> readListener) {
+        EasyExcelFactory.read(file).head(clazz).registerReadListener(readListener).sheet().doRead();
     }
 
     /**
@@ -265,10 +265,10 @@ public class EasyExcelUtils {
      *
      * @param filePath 文件路径
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      */
-    public static <T> void asyncReadModel(String filePath, Class<T> clazz, ExcelListener<T> excelListener) {
-        EasyExcelFactory.read(filePath).head(clazz).registerReadListener(excelListener).sheet().doRead();
+    public static <T> void asyncReadModel(String filePath, Class<T> clazz, ReadListener<T> readListener) {
+        EasyExcelFactory.read(filePath).head(clazz).registerReadListener(readListener).sheet().doRead();
     }
 
     /**
@@ -277,11 +277,11 @@ public class EasyExcelUtils {
      *
      * @param inputStream inputStream
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      * @param sheetNo sheet页号
      */
-    public static <T> void asyncReadModel(InputStream inputStream, Class<T> clazz, ExcelListener<T> excelListener, Integer sheetNo) {
-        EasyExcelFactory.read(inputStream).head(clazz).registerReadListener(excelListener).sheet(sheetNo).doRead();
+    public static <T> void asyncReadModel(InputStream inputStream, Class<T> clazz, ReadListener<T> readListener, Integer sheetNo) {
+        EasyExcelFactory.read(inputStream).head(clazz).registerReadListener(readListener).sheet(sheetNo).doRead();
     }
 
     /**
@@ -290,11 +290,11 @@ public class EasyExcelUtils {
      *
      * @param file 文件
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      * @param sheetNo sheet页号
      */
-    public static <T> void asyncReadModel(File file, Class<T> clazz, ExcelListener<T> excelListener, Integer sheetNo) {
-        EasyExcelFactory.read(file).head(clazz).registerReadListener(excelListener).sheet(sheetNo).doRead();
+    public static <T> void asyncReadModel(File file, Class<T> clazz, ReadListener<T> readListener, Integer sheetNo) {
+        EasyExcelFactory.read(file).head(clazz).registerReadListener(readListener).sheet(sheetNo).doRead();
     }
 
     /**
@@ -303,11 +303,11 @@ public class EasyExcelUtils {
      *
      * @param filePath 文件路径
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      * @param sheetNo sheet页号
      */
-    public static <T> void asyncReadModel(String filePath, Class<T> clazz, ExcelListener<T> excelListener, Integer sheetNo) {
-        EasyExcelFactory.read(filePath).head(clazz).registerReadListener(excelListener).sheet(sheetNo).doRead();
+    public static <T> void asyncReadModel(String filePath, Class<T> clazz, ReadListener<T> readListener, Integer sheetNo) {
+        EasyExcelFactory.read(filePath).head(clazz).registerReadListener(readListener).sheet(sheetNo).doRead();
     }
 
     /**
@@ -316,13 +316,13 @@ public class EasyExcelUtils {
      *
      * @param inputStream inputStream
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      * @param sheetNo sheet页号
      * @param headRowNum 表头行数
      */
-    public static <T> void asyncReadModel(InputStream inputStream, Class<T> clazz, ExcelListener<T> excelListener,
+    public static <T> void asyncReadModel(InputStream inputStream, Class<T> clazz, ReadListener<T> readListener,
                                           Integer sheetNo, Integer headRowNum) {
-        EasyExcelFactory.read(inputStream).head(clazz).registerReadListener(excelListener).sheet(sheetNo)
+        EasyExcelFactory.read(inputStream).head(clazz).registerReadListener(readListener).sheet(sheetNo)
                 .headRowNumber(headRowNum).doRead();
     }
 
@@ -332,13 +332,13 @@ public class EasyExcelUtils {
      *
      * @param file 文件
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      * @param sheetNo sheet页号
      * @param headRowNum 表头行数
      */
-    public static <T> void asyncReadModel(File file, Class<T> clazz, ExcelListener<T> excelListener,
+    public static <T> void asyncReadModel(File file, Class<T> clazz, ReadListener<T> readListener,
                                           Integer sheetNo, Integer headRowNum) {
-        EasyExcelFactory.read(file).head(clazz).registerReadListener(excelListener).sheet(sheetNo)
+        EasyExcelFactory.read(file).head(clazz).registerReadListener(readListener).sheet(sheetNo)
                 .headRowNumber(headRowNum).doRead();
     }
 
@@ -348,13 +348,13 @@ public class EasyExcelUtils {
      *
      * @param filePath 文件路径
      * @param clazz 模板类
-     * @param excelListener 监听器
+     * @param readListener 监听器
      * @param sheetNo sheet页号
      * @param headRowNum 表头行数
      */
-    public static <T> void asyncReadModel(String filePath, Class<T> clazz, ExcelListener<T> excelListener,
+    public static <T> void asyncReadModel(String filePath, Class<T> clazz, ReadListener<T> readListener,
                                           Integer sheetNo, Integer headRowNum) {
-        EasyExcelFactory.read(filePath).head(clazz).registerReadListener(excelListener).sheet(sheetNo)
+        EasyExcelFactory.read(filePath).head(clazz).registerReadListener(readListener).sheet(sheetNo)
                 .headRowNumber(headRowNum).doRead();
     }
 }
