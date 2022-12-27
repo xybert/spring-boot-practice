@@ -4,7 +4,14 @@ import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.read.listener.ReadListener;
 import com.alibaba.excel.write.handler.WriteHandler;
+import com.alibaba.excel.write.metadata.style.WriteCellStyle;
+import com.alibaba.excel.write.metadata.style.WriteFont;
+import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.poi.ss.formula.functions.T;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 
 import java.io.File;
 import java.io.InputStream;
@@ -416,10 +423,13 @@ public class EasyExcelUtils {
      * @param outputStream outputStream
      * @param clazz 表头类
      * @param data 表内容数据
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      */
-    public static <T> void write(OutputStream outputStream, Class<T> clazz, List data, WriteHandler writeHandler) {
-        EasyExcelFactory.write(outputStream).head(clazz).registerWriteHandler(writeHandler).sheet().doWrite(data);
+    public static <T> void write(OutputStream outputStream, Class<T> clazz, List data, List<WriteHandler> writeHandlers) {
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).head(clazz)
+                    .registerWriteHandler(writeHandler).sheet().doWrite(data));
+        }
     }
 
     /**
@@ -428,12 +438,15 @@ public class EasyExcelUtils {
      * @param outputStream outputStream
      * @param clazz 表头类
      * @param data 表内容数据
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      * @param sheetNo sheet页号，从0开始
      * @param sheetName sheet名称
      */
-    public static <T> void write(OutputStream outputStream, Class<T> clazz, List data, WriteHandler writeHandler, Integer sheetNo, String sheetName) {
-        EasyExcelFactory.write(outputStream).head(clazz).registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data);
+    public static <T> void write(OutputStream outputStream, Class<T> clazz, List data, List<WriteHandler> writeHandlers, Integer sheetNo, String sheetName) {
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).head(clazz)
+                    .registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data));
+        }
     }
 
     /**
@@ -469,10 +482,13 @@ public class EasyExcelUtils {
      * @param clazz 表头类
      * @param data 表内容数据
      * @param includeCols 包含的字段名称
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      */
-    public static <T> void writeInclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> includeCols, WriteHandler writeHandler) {
-        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(includeCols).registerWriteHandler(writeHandler).sheet().doWrite(data);
+    public static <T> void writeInclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> includeCols, List<WriteHandler> writeHandlers) {
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(includeCols)
+                    .registerWriteHandler(writeHandler).sheet().doWrite(data));
+        }
     }
 
     /**
@@ -482,14 +498,16 @@ public class EasyExcelUtils {
      * @param clazz 表头类
      * @param data 表内容数据
      * @param includeCols 包含的字段名称
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      * @param sheetNo sheet页号，从0开始
      * @param sheetName sheet名称
      */
     public static <T> void writeInclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> includeCols,
-                                        WriteHandler writeHandler, Integer sheetNo, String sheetName) {
-        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(includeCols)
-                .registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data);
+                                        List<WriteHandler> writeHandlers, Integer sheetNo, String sheetName) {
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(includeCols)
+                    .registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data));
+        }
     }
 
     /**
@@ -515,7 +533,7 @@ public class EasyExcelUtils {
      * @param sheetName sheet名称
      */
     public static <T> void writeExclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> excludeCols, Integer sheetNo, String sheetName) {
-        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(excludeCols).sheet(sheetNo, sheetName).doWrite(data);
+        EasyExcelFactory.write(outputStream).head(clazz).excludeColumnFiledNames(excludeCols).sheet(sheetNo, sheetName).doWrite(data);
     }
 
     /**
@@ -525,10 +543,13 @@ public class EasyExcelUtils {
      * @param clazz 表头类
      * @param data 表内容数据
      * @param excludeCols 包含的字段名称
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      */
-    public static <T> void writeExclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> excludeCols, WriteHandler writeHandler) {
-        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(excludeCols).registerWriteHandler(writeHandler).sheet().doWrite(data);
+    public static <T> void writeExclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> excludeCols, List<WriteHandler> writeHandlers) {
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).head(clazz).excludeColumnFiledNames(excludeCols)
+                    .registerWriteHandler(writeHandler).sheet().doWrite(data));
+        }
     }
 
     /**
@@ -538,14 +559,16 @@ public class EasyExcelUtils {
      * @param clazz 表头类
      * @param data 表内容数据
      * @param excludeCols 排除的字段名称
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      * @param sheetNo sheet页号，从0开始
      * @param sheetName sheet名称
      */
     public static <T> void writeExclude(OutputStream outputStream, Class<T> clazz, List data, Set<String> excludeCols,
-                                        WriteHandler writeHandler, Integer sheetNo, String sheetName) {
-        EasyExcelFactory.write(outputStream).head(clazz).includeColumnFiledNames(excludeCols)
-                .registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data);
+                                        List<WriteHandler> writeHandlers, Integer sheetNo, String sheetName) {
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).head(clazz).excludeColumnFiledNames(excludeCols)
+                    .registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data));
+        }
     }
 
     /**
@@ -578,10 +601,13 @@ public class EasyExcelUtils {
      * @param outputStream outputStream
      * @param templateFileName 填充模板
      * @param data 表内容数据
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      */
-    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, WriteHandler writeHandler){
-        EasyExcel.write(outputStream).withTemplate(templateFileName).registerWriteHandler(writeHandler).sheet().doWrite(data);
+    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, List<WriteHandler> writeHandlers){
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).withTemplate(templateFileName)
+                    .registerWriteHandler(writeHandler).sheet().doWrite(data));
+        }
     }
 
     /**
@@ -590,12 +616,15 @@ public class EasyExcelUtils {
      * @param outputStream outputStream
      * @param templateFileName 填充模板
      * @param data 表内容数据
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      * @param sheetNo sheet页号，从0开始
      * @param sheetName sheet名称
      */
-    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, WriteHandler writeHandler, Integer sheetNo, String sheetName){
-        EasyExcel.write(outputStream).withTemplate(templateFileName).registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data);
+    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, List<WriteHandler> writeHandlers, Integer sheetNo, String sheetName){
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).withTemplate(templateFileName)
+                    .registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data));
+        }
     }
 
     /**
@@ -604,14 +633,48 @@ public class EasyExcelUtils {
      * @param outputStream outputStream
      * @param templateFileName 填充模板
      * @param data 表内容数据
-     * @param writeHandler 自定义处理器
+     * @param writeHandlers 自定义处理器
      * @param excludeCols 排除的字段名称
      * @param sheetNo sheet页号，从0开始
      * @param sheetName sheet名称
      */
-    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, WriteHandler writeHandler, Set<String> excludeCols,
+    public static void writeTemplate(OutputStream outputStream, String templateFileName, List data, List<WriteHandler> writeHandlers, Set<String> excludeCols,
                                      Integer sheetNo, String sheetName){
-        EasyExcel.write(outputStream).withTemplate(templateFileName).registerWriteHandler(writeHandler)
-                .excludeColumnFiledNames(excludeCols).sheet(sheetNo, sheetName).doWrite(data);
+        if (CollectionUtils.isNotEmpty(writeHandlers)) {
+            writeHandlers.forEach(writeHandler -> EasyExcelFactory.write(outputStream).withTemplate(templateFileName)
+                    .excludeColumnFiledNames(excludeCols).registerWriteHandler(writeHandler).sheet(sheetNo, sheetName).doWrite(data));
+        }
+    }
+
+    /**
+     * 设置单元格样式
+     *
+     * @return HorizontalCellStyleStrategy
+     */
+    public static HorizontalCellStyleStrategy createCellStyleStrategy() {
+        // 设置表头策略
+        WriteCellStyle headWriteCellStyle = new WriteCellStyle();
+        headWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        headWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        headWriteCellStyle.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        headWriteCellStyle.setWrapped(true);
+        WriteFont headWriteFont = new WriteFont();
+        headWriteFont.setFontName("华文细黑");
+        headWriteFont.setFontHeightInPoints((short) 13);
+        headWriteFont.setBold(true);
+        headWriteCellStyle.setWriteFont(headWriteFont);
+
+        // 设置内容策略
+        WriteCellStyle contentWriteCellStyle = new WriteCellStyle();
+        contentWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        contentWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        contentWriteCellStyle.setWrapped(true);
+        WriteFont contentWriteFont = new WriteFont();
+        contentWriteFont.setFontName("等线");
+        contentWriteFont.setFontHeightInPoints((short) 11);
+        contentWriteFont.setBold(false);
+        contentWriteCellStyle.setWriteFont(contentWriteFont);
+
+        return new HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);
     }
 }
