@@ -1,6 +1,7 @@
 package com.xybert.springbooteasyexcel.service.impl;
 
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.write.handler.WriteHandler;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xybert.springbooteasyexcel.constant.SystemResultCode;
 import com.xybert.springbooteasyexcel.entity.User;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,24 +35,26 @@ public class UserServiceImpl  extends ServiceImpl<UserMapper, User> implements U
 
     @Override
     public void exportUser(HttpServletResponse response) {
-        String fileName = "用户信息表";
+        String rawFileName = "用户信息表";
         List<User> users = userMapper.selectList(null);
         if (CollectionUtils.isEmpty(users)) {
             throw new SystemException(SystemResultCode.NO_DATA_EXIST);
         }
+        List<WriteHandler> writeHandlers = new ArrayList<>();
+        writeHandlers.add(EasyExcelUtils.createCellStyleStrategy());
         try {
-            setResponse(response, fileName);
-            EasyExcelUtils.write(response.getOutputStream(), User.class, users);
+            setResponse(response, rawFileName);
+            EasyExcelUtils.write(response.getOutputStream(), User.class, users, writeHandlers);
         } catch (IOException e) {
             throw new SystemException(SystemResultCode.DATA_EXPORT_FAIL);
         }
     }
 
-    private void setResponse(HttpServletResponse response, String fileName) throws UnsupportedEncodingException {
+    private void setResponse(HttpServletResponse response, String rawFileName) throws UnsupportedEncodingException {
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         // 设置URLEncoder.encode可以防止中文乱码
-        fileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.name()).replaceAll("\\+", "%20");
+        String fileName = URLEncoder.encode(rawFileName, StandardCharsets.UTF_8.name()).replaceAll("\\+", "%20");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ExcelTypeEnum.XLSX.getValue());
     }
 }

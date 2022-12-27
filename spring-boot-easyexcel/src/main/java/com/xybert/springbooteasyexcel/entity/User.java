@@ -2,6 +2,10 @@ package com.xybert.springbooteasyexcel.entity;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
+import com.alibaba.excel.annotation.write.style.ContentRowHeight;
+import com.alibaba.excel.annotation.write.style.ContentStyle;
+import com.alibaba.excel.annotation.write.style.HeadRowHeight;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.xybert.springbooteasyexcel.handler.SexConverter;
@@ -22,6 +26,9 @@ import java.util.Date;
 @Data
 @TableName(value = "user")
 @EqualsAndHashCode(callSuper = true)
+@HeadRowHeight(25)
+@ContentRowHeight(15)
+@ColumnWidth(10)
 public class User extends Model<User> {
 
     /**
@@ -57,13 +64,15 @@ public class User extends Model<User> {
      */
     @TableField(value = "tel")
     @ExcelProperty(value = "联系电话")
-    private String tel;
+    @ColumnWidth(value = 20)
+    private Long tel;
 
     /**
      * 邮箱
      */
     @TableField(value = "email")
     @ExcelProperty(value = "邮箱")
+    @ColumnWidth(value = 30)
     private String email;
 
     /**
