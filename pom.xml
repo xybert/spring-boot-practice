@@ -46,6 +46,9 @@
         <fastjson.version>2.0.16</fastjson.version>
         <jetbrains-annotations.version>23.0.0</jetbrains-annotations.version>
         <httpcore.version>4.4.15</httpcore.version>
+        <springdoc-openapi.version>1.6.12</springdoc-openapi.version>
+        <knife4j.version>3.0.3</knife4j.version>
+        <swagger.version>3.0.0</swagger.version>
     </properties>
 
     <build>
