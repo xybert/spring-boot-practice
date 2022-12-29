@@ -13,12 +13,13 @@ spring:
 
   jpa:
     # 指定数据库类型
-    database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     # 在日志中打印出执行的SQL语句信息
     show-sql: true
     hibernate:
       # 自动更新
       ddl-auto: update
+    open-in-view: false
 
 logging:
   level:
