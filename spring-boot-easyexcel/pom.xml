@@ -79,7 +79,7 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>${common-io.version}</version>
+            <version>${commons-io.version}</version>
         </dependency>
 
         <dependency>
