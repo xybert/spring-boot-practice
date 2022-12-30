@@ -29,13 +29,14 @@
 - [x] [spring-boot-hello](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-hello)
 - [x] [spring-boot-mybatis](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-mybatis)
 - [x] [spring-boot-mybatis-plus](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-mybatis-plus)
-- [ ] [spring-boot-jpa]()
+- [x] [spring-boot-jpa](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-jpa)
 - [x] [spring-boot-flyway](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-flyway)
 - [x] [spring-boot-upload](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-upload)
 - [x] [spring-boot-download](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-download)
 - [x] [spring-boot-swagger](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-swagger)
 - [x] [spring-boot-knife4j](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-knife4j)
 - [x] [spring-boot-easyexcel](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-easyexcel)
+- [x] [spring-boot-exception](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-exception)
 
 ## 接口文档
 
