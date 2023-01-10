@@ -1,13 +1,17 @@
 package com.xybert.springbootjpa.controller;
 
+import com.xybert.springbootexception.result.BaseResult;
 import com.xybert.springbootjpa.entity.User;
 import com.xybert.springbootjpa.entity.dto.UserDto;
 import com.xybert.springbootjpa.entity.request.UserRequest;
 import com.xybert.springbootjpa.service.UserService;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xybert
@@ -23,27 +27,37 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/list")
-    public List<User> listAll(@RequestBody UserRequest userRequest) {
-        return userService.listAll(userRequest);
+    public BaseResult listAll(@RequestBody UserRequest userRequest) {
+        Pair<Long, List<User>> users = userService.listAll(userRequest);
+        Map<String, Object> result = new HashMap<>();
+        result.put("projects", users.getRight());
+        result.put("pageSize", userRequest.getPageSize());
+        result.put("totalCount", users.getLeft());
+        return BaseResult.success(result);
     }
 
     @GetMapping("/get")
-    public User getOne(@RequestParam("id") Long id) {
-        return userService.getOne(id);
+    public BaseResult getOne(@RequestParam("id") Long id) {
+        return BaseResult.success(userService.getOne(id));
     }
 
     @PostMapping("/save")
-    public void addOne(@RequestBody UserDto userDto) {
-        userService.addOne(userDto);
+    public BaseResult addOne(@RequestBody UserDto userDto) {
+        return userService.addOne(userDto);
     }
 
     @DeleteMapping("/delete")
-    public void deleteOne(@RequestParam("id") Long id) {
-        userService.deleteOne(id);
+    public BaseResult deleteOne(@RequestParam("id") Long id) {
+        return userService.deleteOne(id);
+    }
+
+    @DeleteMapping("/deleteBatch")
+    public BaseResult deleteBatch(@RequestParam("ids") List<Long> ids) {
+        return userService.deleteBatch(ids);
     }
 
     @PutMapping("/update")
-    public void updateOne(@RequestBody UserDto userDto) {
-        userService.updateOne(userDto);
+    public BaseResult updateOne(@RequestBody UserDto userDto) {
+        return userService.updateOne(userDto);
     }
 }

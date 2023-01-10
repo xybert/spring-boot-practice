@@ -1,5 +1,6 @@
 package com.xybert.springbootjpa.entity.dto;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +15,14 @@ import lombok.Setter;
 public class UserDto {
 
     /**
+     * 用户id
+     */
+    private Long id;
+
+    /**
      * 用户名
      */
+    @NotNull
     private String account;
 
     /**

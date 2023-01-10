@@ -1,19 +1,27 @@
 package com.xybert.springbootjpa.service.impl;
 
 import com.google.common.collect.Lists;
+import com.xybert.springbootexception.exception.BaseException;
+import com.xybert.springbootexception.result.BaseResult;
 import com.xybert.springbootjpa.entity.User;
 import com.xybert.springbootjpa.entity.dto.UserDto;
 import com.xybert.springbootjpa.entity.request.UserRequest;
+import com.xybert.springbootjpa.enums.ExceptionEnum;
 import com.xybert.springbootjpa.repository.UserRepository;
 import com.xybert.springbootjpa.service.UserService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.persistence.criteria.Predicate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -31,10 +39,15 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<User> listAll(UserRequest userRequest) {
-        Pageable pageable = PageRequest.of(userRequest.getPageNum(), userRequest.getPageSize());
-        Page<User> userPage = userRepository.findAll(getSpecification(userRequest), pageable);
-        return userPage.getContent();
+    public Pair<Long, List<User>> listAll(UserRequest userRequest) {
+        Sort sort = Sort.by("createTime").descending();
+        if (StringUtils.isNotBlank(userRequest.getSortField())) {
+            sort = Objects.equals(userRequest.getSortType(), 1) ? Sort.by(userRequest.getSortField()).descending()
+                    : Sort.by(userRequest.getSortField()).ascending();
+        }
+        Pageable pageable = PageRequest.of(userRequest.getPageNo() - 1, userRequest.getPageSize(), sort);
+        Page<User> users = userRepository.findAll(getSpecification(userRequest), pageable);
+        return new ImmutablePair<>(users.getTotalElements(), users.getContent());
     }
 
     @Override
@@ -44,18 +57,35 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addOne(UserDto userDto) {
-        userRepository.save(setUser(userDto));
+    public BaseResult addOne(UserDto userDto) {
+        if (Objects.nonNull(userRepository.findByAccount(Objects.requireNonNull(userDto.getAccount())))) {
+            throw new BaseException(ExceptionEnum.USER_ALREADY_EXIST);
+        }
+        return BaseResult.success(userRepository.save(setUser(userDto)));
     }
 
     @Override
-    public void deleteOne(Long id) {
+    public BaseResult deleteOne(Long id) {
         userRepository.deleteById(id);
+        return BaseResult.success();
     }
 
     @Override
-    public void updateOne(UserDto userDto) {
-        userRepository.save(setUser(userDto));
+    public BaseResult deleteBatch(List<Long> ids) {
+        userRepository.deleteAllById(ids);
+        return BaseResult.success();
+    }
+
+    @Override
+    public BaseResult updateOne(UserDto userDto) {
+        Optional<User> optionalUser = userRepository.findById(userDto.getId());
+        if (!optionalUser.isPresent()) {
+            throw new BaseException((ExceptionEnum.USER_NOT_EXIST));
+        }
+        if (Objects.equals(optionalUser.get().getAccount(), userDto.getAccount())) {
+            throw new BaseException((ExceptionEnum.ACCOUNT_DUPLICATE));
+        }
+        return BaseResult.success(userRepository.save(setUser(userDto)));
     }
 
     /**
@@ -67,14 +97,30 @@ public class UserServiceImpl implements UserService {
     private Specification<User> getSpecification(UserRequest userRequest) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = Lists.newArrayList();
+            if (Objects.nonNull(userRequest.getAccount())) {
+                // 用户名模糊匹配
+                predicates.add(criteriaBuilder.like(root.get("account"), userRequest.getAccount()));
+            }
             if (Objects.nonNull(userRequest.getSex())) {
+                // 性别精确匹配
                 predicates.add(criteriaBuilder.equal(root.get("sex"), userRequest.getSex()));
             }
-            if (Objects.nonNull(userRequest.getAge())) {
-                predicates.add(criteriaBuilder.equal(root.get("age"), userRequest.getAge()));
+            if (Objects.nonNull(userRequest.getEndAge())) {
+                Integer beginAge = Objects.isNull(userRequest.getBeginAge()) ? 0 : userRequest.getBeginAge();
+                // 年龄范围匹配
+                predicates.add(criteriaBuilder.between(root.get("age"), beginAge, userRequest.getBeginAge()));
             }
             if (Objects.nonNull(userRequest.getStatus())) {
+                // 状态精确匹配
                 predicates.add(criteriaBuilder.equal(root.get("status"), userRequest.getStatus()));
+            }
+            if (Objects.nonNull(userRequest.getBeginTime()) || Objects.nonNull(userRequest.getEndTime())) {
+                Date beginTime = Objects.isNull(userRequest.getBeginTime()) ? new Date() : userRequest.getBeginTime();
+                Date endTime = Objects.isNull(userRequest.getEndTime()) ? new Date() : userRequest.getEndTime();
+                if (!Objects.equals(beginTime, endTime)) {
+                    // 创建时间范围
+                    predicates.add(criteriaBuilder.between(root.get("createTime"), beginTime, endTime));
+                }
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
@@ -87,9 +133,6 @@ public class UserServiceImpl implements UserService {
      * @return User
      */
     private User setUser(UserDto userDto) {
-        if (Objects.isNull(userRepository.findByAccount(Objects.requireNonNull(userDto.getAccount())))) {
-            throw new RuntimeException();
-        }
         User user = new User().setAccount(userDto.getAccount());
         if (Objects.nonNull(userDto.getSex())) {
             user.setSex(userDto.getSex());

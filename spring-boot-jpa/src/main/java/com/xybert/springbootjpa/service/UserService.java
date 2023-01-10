@@ -1,8 +1,10 @@
 package com.xybert.springbootjpa.service;
 
+import com.xybert.springbootexception.result.BaseResult;
 import com.xybert.springbootjpa.entity.User;
 import com.xybert.springbootjpa.entity.dto.UserDto;
 import com.xybert.springbootjpa.entity.request.UserRequest;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
@@ -18,9 +20,9 @@ public interface UserService {
      * 查询所有用户
      *
      * @param userRequest 请求参数
-     * @return List<User>
+     * @return Pair<Long, List<User>>
      */
-    List<User> listAll(UserRequest userRequest);
+    Pair<Long, List<User>> listAll(UserRequest userRequest);
 
     /**
      * 根据id查询用户
@@ -35,19 +37,26 @@ public interface UserService {
      *
      * @param userDto user信息
      */
-    void addOne(UserDto userDto);
+    BaseResult addOne(UserDto userDto);
 
     /**
      * 删除用户
      *
      * @param id 用户id
      */
-    void deleteOne(Long id);
+    BaseResult deleteOne(Long id);
+
+    /**
+     * 批量删除用户
+     *
+     * @param ids 用户id列表
+     */
+    BaseResult deleteBatch(List<Long> ids);
 
     /**
      * 更新用户信息
      *
      * @param userDto 用户信息
      */
-    void updateOne(UserDto userDto);
+    BaseResult updateOne(UserDto userDto);
 }
