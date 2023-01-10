@@ -11,7 +11,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum BaseResponseEnum {
+public enum BaseResultEnum {
 
     SUCCESS("00000", "操作成功"),
     FAIL("09991", "操作失败"),

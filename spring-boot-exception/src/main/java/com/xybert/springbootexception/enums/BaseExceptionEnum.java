@@ -1,5 +1,6 @@
 package com.xybert.springbootexception.enums;
 
+import com.xybert.springbootexception.result.BaseErrorInterface;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,7 +12,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum BaseExceptionEnum {
+public enum BaseExceptionEnum implements BaseErrorInterface {
 
     SYSTEM_ERROR("09999", "系统内部异常"),
     NETWORK_ERROR("09998", "网络异常"),

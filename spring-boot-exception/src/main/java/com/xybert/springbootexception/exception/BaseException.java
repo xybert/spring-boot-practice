@@ -1,6 +1,7 @@
 package com.xybert.springbootexception.exception;
 
 import com.alibaba.fastjson2.JSON;
+import com.xybert.springbootexception.result.BaseErrorInterface;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.util.Objects;
  */
 
 @Data
-public class BaseException extends RuntimeException implements Serializable {
+public class BaseException extends RuntimeException implements BaseErrorInterface, Serializable {
 
     private static final long serialVersionUID = -5253831112698485809L;
 
@@ -31,21 +32,36 @@ public class BaseException extends RuntimeException implements Serializable {
         super();
     }
 
-    public BaseException(String message) {
-        super(message);
-        this.message = message;
+    public BaseException(String message, Object... args) {
+        super(BaseErrorInterface.formatMsg(message, args));
     }
 
-    public BaseException(String code, String message) {
-        super(message);
-        this.code = code;
-        this.message = message;
+    public BaseException(String message, Throwable cause, Object... args) {
+        super(BaseErrorInterface.formatMsg(message, args), cause);
     }
 
-    public BaseException(String code, String message, Throwable cause) {
-        super(message, cause);
+    public BaseException(String code, String message, Object... args) {
+        super(BaseErrorInterface.formatMsg(message, args));
         this.code = code;
-        this.message = message;
+        this.message = BaseErrorInterface.formatMsg(message, args);
+    }
+
+    public BaseException(String code, String message, Throwable cause, Object... args) {
+        super(BaseErrorInterface.formatMsg(message, args), cause);
+        this.code = code;
+        this.message = BaseErrorInterface.formatMsg(message, args);
+    }
+
+    public BaseException(BaseErrorInterface baseErrorInterface, Object... args) {
+        super(BaseErrorInterface.formatMsg(baseErrorInterface.getMessage(), args));
+        this.code = baseErrorInterface.getCode();
+        this.message = BaseErrorInterface.formatMsg(baseErrorInterface.getMessage(), args);
+    }
+
+    public BaseException(BaseErrorInterface baseErrorInterface, Throwable cause, Object... args) {
+        super(BaseErrorInterface.formatMsg(baseErrorInterface.getMessage(), args), cause);
+        this.code = baseErrorInterface.getCode();
+        this.message = BaseErrorInterface.formatMsg(baseErrorInterface.getMessage(), args);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.xybert.springbootexception.handler;
 
 import com.xybert.springbootexception.exception.BaseException;
-import com.xybert.springbootexception.result.ApiResponse;
+import com.xybert.springbootexception.result.BaseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,9 +27,9 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = BaseException.class)
     @ResponseBody
-    public ApiResponse exceptionHandler(BaseException e){
+    public BaseResult exceptionHandler(BaseException e){
         logger.error("业务异常：{}",e.getMessage());
-        return ApiResponse.fail(e);
+        return BaseResult.fail(e);
     }
 
     /**
@@ -40,9 +40,9 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = NullPointerException.class)
     @ResponseBody
-    public ApiResponse exceptionHandler(NullPointerException e){
+    public BaseResult exceptionHandler(NullPointerException e){
         logger.error("空指针异常：{}",e.getMessage());
-        return ApiResponse.fail(e);
+        return BaseResult.fail(e);
     }
 
     /**
@@ -53,8 +53,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public ApiResponse exceptionHandler(Exception e){
+    public BaseResult exceptionHandler(Exception e){
         logger.error("系统异常：{}",e.getMessage());
-        return ApiResponse.fail(e);
+        return BaseResult.fail(e);
     }
 }

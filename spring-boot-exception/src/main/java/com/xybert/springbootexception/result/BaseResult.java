@@ -1,7 +1,7 @@
 package com.xybert.springbootexception.result;
 
 import com.alibaba.fastjson2.JSON;
-import com.xybert.springbootexception.enums.BaseResponseEnum;
+import com.xybert.springbootexception.enums.BaseResultEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +18,7 @@ import java.util.Objects;
 
 @Data
 @NoArgsConstructor
-public class ApiResponse implements Serializable {
+public class BaseResult implements Serializable {
 
     private static final long serialVersionUID = 6675812521987115367L;
 
@@ -37,18 +37,29 @@ public class ApiResponse implements Serializable {
      */
     private Object data;
 
-    public ApiResponse(String code, String message) {
+    public BaseResult(String code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public ApiResponse(String code, String message, Object data) {
+    public BaseResult(String code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
 
-    public ApiResponse(Enum e) {
+    public BaseResult(BaseErrorInterface baseErrorInterface) {
+        this.code = baseErrorInterface.getCode();
+        this.message = baseErrorInterface.getMessage();
+    }
+
+    public BaseResult(BaseErrorInterface baseErrorInterface, Object data) {
+        this.code = baseErrorInterface.getCode();
+        this.message = baseErrorInterface.getMessage();
+        this.data = data;
+    }
+
+    public BaseResult(Enum e) {
         Method[] methods = e.getClass().getDeclaredMethods();
         for (Method method : methods) {
             try {
@@ -66,7 +77,7 @@ public class ApiResponse implements Serializable {
         }
     }
 
-    public ApiResponse(Enum e, Object data) {
+    public BaseResult(Enum e, Object data) {
         Method[] methods = e.getClass().getDeclaredMethods();
         boolean errorHappened = false;
         for (Method method : methods) {
@@ -89,32 +100,32 @@ public class ApiResponse implements Serializable {
         }
     }
 
-    public static ApiResponse success() {
-        return new ApiResponse(BaseResponseEnum.SUCCESS.getCode(), BaseResponseEnum.SUCCESS.getMessage());
+    public static BaseResult success() {
+        return new BaseResult(BaseResultEnum.SUCCESS.getCode(), BaseResultEnum.SUCCESS.getMessage());
     }
 
-    public static ApiResponse success(String message) {
-        return new ApiResponse(BaseResponseEnum.SUCCESS.getCode(), message);
+    public static BaseResult success(String message) {
+        return new BaseResult(BaseResultEnum.SUCCESS.getCode(), message);
     }
 
-    public static ApiResponse success(Object data) {
-        return new ApiResponse(BaseResponseEnum.SUCCESS.getCode(), BaseResponseEnum.SUCCESS.getMessage(), data);
+    public static BaseResult success(Object data) {
+        return new BaseResult(BaseResultEnum.SUCCESS.getCode(), BaseResultEnum.SUCCESS.getMessage(), data);
     }
 
-    public static ApiResponse success(String message, Object data) {
-        return new ApiResponse(BaseResponseEnum.SUCCESS.getCode(), message, data);
+    public static BaseResult success(String message, Object data) {
+        return new BaseResult(BaseResultEnum.SUCCESS.getCode(), message, data);
     }
 
-    public static ApiResponse fail() {
-        return new ApiResponse(BaseResponseEnum.SUCCESS.getCode(), BaseResponseEnum.SUCCESS.getMessage());
+    public static BaseResult fail() {
+        return new BaseResult(BaseResultEnum.SUCCESS.getCode(), BaseResultEnum.SUCCESS.getMessage());
     }
 
-    public static ApiResponse fail(String message) {
-        return new ApiResponse(BaseResponseEnum.FAIL.getCode(), message);
+    public static BaseResult fail(String message) {
+        return new BaseResult(BaseResultEnum.FAIL.getCode(), message);
     }
 
-    public static ApiResponse fail(Exception exception) {
-        return new ApiResponse(BaseResponseEnum.FAIL.getCode(), exception.getMessage());
+    public static BaseResult fail(Exception exception) {
+        return new BaseResult(BaseResultEnum.FAIL.getCode(), exception.getMessage());
     }
 
     @Override
