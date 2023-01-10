@@ -21,8 +21,7 @@
 - Spring Boot 2.7.4
 - Maven 3.6.1
 - MySQL 8.0.31
-- IntelliJ IDEA 2022.1.3 (Ultimate Edition)
-- ...
+- IntelliJ IDEA 2022.1.3
 
 ## 开发进度
 

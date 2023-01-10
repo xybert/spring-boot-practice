@@ -20,6 +20,7 @@
         <module>spring-boot-swagger</module>
         <module>spring-boot-knife4j</module>
         <module>spring-boot-easyexcel</module>
+        <module>spring-boot-exception</module>
     </modules>
 
     <properties>
