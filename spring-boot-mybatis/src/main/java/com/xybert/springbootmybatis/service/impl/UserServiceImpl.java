@@ -1,9 +1,9 @@
 package com.xybert.springbootmybatis.service.impl;
 
 import com.google.common.collect.Lists;
+import com.xybert.springbootexception.exception.BaseException;
 import com.xybert.springbootmybatis.entity.User;
-import com.xybert.springbootmybatis.enums.UserOperateEnum;
-import com.xybert.springbootmybatis.exception.CustomException;
+import com.xybert.springbootmybatis.enums.ExceptionEnum;
 import com.xybert.springbootmybatis.mapper.UserMapper;
 import com.xybert.springbootmybatis.service.UserService;
 import org.apache.commons.collections4.CollectionUtils;
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectUserById(Long id) {
         return Optional.ofNullable(userMapper.selectUserById(id))
-                .orElseThrow(() -> new CustomException(UserOperateEnum.USER_NOT_EXIST));
+                .orElseThrow(() -> new BaseException(ExceptionEnum.USER_NOT_EXIST));
     }
 
     /**
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectUserByName(String name) {
         return Optional.ofNullable(userMapper.selectUserByName(name))
-                .orElseThrow(() -> new CustomException(UserOperateEnum.USER_NAME_NOT_EXIST, name));
+                .orElseThrow(() -> new BaseException(ExceptionEnum.USER_NOT_EXIST));
     }
 
     /**
@@ -74,10 +74,10 @@ public class UserServiceImpl implements UserService {
     public User insertUser(User userInfo) {
         User user = userMapper.selectUserByName(userInfo.getName());
         if (user != null) {
-            throw new CustomException(UserOperateEnum.USER_ALREADY_EXIST, userInfo.getName());
+            throw new BaseException(ExceptionEnum.USER_ALREADY_EXIST, userInfo.getName());
         }
         if (userMapper.insertUser(userInfo) == 0) {
-            throw new CustomException(UserOperateEnum.USER_INSERT_FAIL);
+            throw new BaseException(ExceptionEnum.USER_INSERT_FAIL);
         }
         return selectUserByName(userInfo.getName());
     }
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
     public User deleteUserById(Long id) {
         User user = selectUserById(id);
         if (userMapper.deleteUserById(id) == 0) {
-            throw new CustomException(UserOperateEnum.USER_DELETE_FAIL);
+            throw new BaseException(ExceptionEnum.USER_DELETE_FAIL);
         }
         return user;
     }
@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User userInfo, Long id) {
         selectUserById(id);
         if (userMapper.updateUser(userInfo) == 0) {
-            throw new CustomException(UserOperateEnum.USER_UPDATE_FAIL);
+            throw new BaseException(ExceptionEnum.USER_UPDATE_FAIL);
         }
         return selectUserById(id);
     }

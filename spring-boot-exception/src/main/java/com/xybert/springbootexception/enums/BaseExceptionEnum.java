@@ -14,12 +14,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum BaseExceptionEnum implements BaseErrorInterface {
 
-    SYSTEM_ERROR("09999", "系统内部异常"),
-    NETWORK_ERROR("09998", "网络异常"),
-    PARAM_ERROR("09997", "参数错误"),
-    NO_PERMISSION("08991", "权限不足"),
-    NO_AUTH("07991", "未授权"),
-    NOT_FOUND("06991", "未找到该数据"),
+    SYSTEM_ERROR("00099", "系统内部异常"),
+    NETWORK_ERROR("00098", "网络异常"),
+    PARAM_ERROR("00097", "参数错误"),
+    NO_PERMISSION("00096", "权限不足"),
+    NO_AUTH("00095", "未授权"),
+    NOT_FOUND("00094", "未找到该数据"),
     ;
 
     /**

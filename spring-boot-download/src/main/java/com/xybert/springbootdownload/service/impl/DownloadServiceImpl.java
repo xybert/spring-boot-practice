@@ -12,6 +12,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.zip.ZipOutputStream;
@@ -32,8 +33,8 @@ public class DownloadServiceImpl implements DownloadService {
         response.setContentType(ContentType.OCTET_STREAM.getValue());
         response.setContentLengthLong(file.length());
         try(BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
-            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" +
-                    URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20"));
+            response.setHeader("Content-disposition", "attachment;filename=utf-8" +
+                    URLEncoder.encode(fileName, StandardCharsets.UTF_8.name()).replaceAll("\\+", "%20"));
             StreamUtils.copy(bis, response.getOutputStream());
         } catch (IOException e) {
             log.error("文件下载失败：{}", fileName);
@@ -51,8 +52,8 @@ public class DownloadServiceImpl implements DownloadService {
         String zipName = "data.zip";
         try(ZipOutputStream zos = new ZipOutputStream(response.getOutputStream())) {
             response.setContentType(ContentType.MULTIPART.getValue());
-            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" +
-                    URLEncoder.encode(zipName, "UTF-8").replaceAll("\\+", "%20"));
+            response.setHeader("Content-disposition", "attachment;filename=utf-8" +
+                    URLEncoder.encode(zipName, StandardCharsets.UTF_8.name()).replaceAll("\\+", "%20"));
             for (File file : files) {
                 FileUtil.zipFile(file, zos);
                 response.flushBuffer();

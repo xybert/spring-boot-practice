@@ -1,9 +1,11 @@
 package com.xybert.springbootupload.controller;
 
-import com.xybert.springbootupload.common.BaseResult;
+import com.xybert.springbootexception.result.BaseResult;
 import com.xybert.springbootupload.service.UploadService;
-import com.xybert.springbootupload.vo.FileVO;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -23,12 +25,12 @@ public class UploadController {
     private UploadService uploadService;
 
     @PostMapping("/single")
-    public BaseResult<FileVO> uploadSingleFile(@RequestParam("file") MultipartFile file) {
+    public BaseResult uploadSingleFile(@RequestParam("file") MultipartFile file) {
         return uploadService.uploadSingleFile(file);
     }
 
     @PostMapping("/list")
-    public BaseResult<FileVO> uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) {
+    public BaseResult uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) {
         return uploadService.uploadMultipleFiles(files);
     }
 }

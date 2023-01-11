@@ -88,6 +88,12 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.xybert</groupId>
+            <artifactId>spring-boot-exception</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

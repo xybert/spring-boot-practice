@@ -3,10 +3,10 @@ package com.xybert.springbootmybatisplus.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xybert.springbootmybatisplus.common.BaseResult;
-import com.xybert.springbootmybatisplus.constant.SystemResultCode;
+import com.xybert.springbootexception.exception.BaseException;
+import com.xybert.springbootexception.result.BaseResult;
 import com.xybert.springbootmybatisplus.entity.User;
-import com.xybert.springbootmybatisplus.exception.SystemException;
+import com.xybert.springbootmybatisplus.enums.ExceptionEnum;
 import com.xybert.springbootmybatisplus.mapper.UserMapper;
 import com.xybert.springbootmybatisplus.service.UserService;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Optional<User> user = Optional.ofNullable(userMapper.selectById(id));
         // ActiveRecord 模式
         // User user = new User().selectById(id);
-        return user.orElseThrow(() -> new SystemException(SystemResultCode.USER_NOT_EXIST));
+        return user.orElseThrow(() -> new BaseException(ExceptionEnum.USER_NOT_EXIST));
     }
 
     /**

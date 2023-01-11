@@ -1,8 +1,10 @@
 package com.xybert.springbootdownload.controller;
 
-import com.xybert.springbootdownload.common.BaseResult;
+import com.xybert.springbootdownload.enums.ExceptionEnum;
 import com.xybert.springbootdownload.service.DownloadService;
 import com.xybert.springbootdownload.util.FileUtil;
+import com.xybert.springbootexception.exception.BaseException;
+import com.xybert.springbootexception.result.BaseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
@@ -37,17 +39,17 @@ public class DownloadController {
     private String downloadFilePath;
 
     @GetMapping("/single")
-    public BaseResult<?> downloadSingleFile(HttpServletResponse response, @RequestParam("fileName") String fileName) {
+    public BaseResult downloadSingleFile(HttpServletResponse response, @RequestParam("fileName") String fileName) {
         File file = FileUtil.findFileByName(fileName, downloadFilePath);
         if (file == null || FileUtils.isDirectory(file)) {
-            return new BaseResult("09746", "文件不存在，请重新选择", "file does not exist");
+            throw new BaseException(ExceptionEnum.FILE_NOT_EXIST);
         }
         downloadService.downloadSingleFile(response, file);
         return null;
     }
 
     @GetMapping("/multiple")
-    public BaseResult<?> downloadMultipleFile(HttpServletResponse response, @RequestParam("fileNames") String fileNames) {
+    public BaseResult downloadMultipleFile(HttpServletResponse response, @RequestParam("fileNames") String fileNames) {
         // fileNames 文件名称列表，由多个文件名称字符串组成，中间以英文逗号（,）分隔
         List<String> fileNameList = Arrays.asList(fileNames.split(","));
         List<File> files = new ArrayList<>();
@@ -60,11 +62,9 @@ public class DownloadController {
             }
         });
         if (CollectionUtils.isEmpty(files)) {
-            return new BaseResult("09746", "文件不存在，请重新选择", "file does not exist");
+            throw new BaseException(ExceptionEnum.FILE_NOT_EXIST);
         }
         downloadService.downloadMultipleFile(response, files);
         return null;
     }
-
-
 }

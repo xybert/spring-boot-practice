@@ -1,12 +1,12 @@
 package com.xybert.springbooteasyexcel.controller;
 
-import com.xybert.springbooteasyexcel.common.BaseResult;
-import com.xybert.springbooteasyexcel.constant.SystemResultCode;
 import com.xybert.springbooteasyexcel.entity.User;
-import com.xybert.springbooteasyexcel.exception.SystemException;
+import com.xybert.springbooteasyexcel.enums.ExceptionEnum;
 import com.xybert.springbooteasyexcel.listener.UserListener;
 import com.xybert.springbooteasyexcel.service.UserService;
 import com.xybert.springbooteasyexcel.util.EasyExcelUtils;
+import com.xybert.springbootexception.exception.BaseException;
+import com.xybert.springbootexception.result.BaseResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +32,7 @@ public class UserController {
         try {
             EasyExcelUtils.asyncReadModel(file.getInputStream(), User.class, new UserListener(userService));
         } catch (IOException e) {
-            throw new SystemException(SystemResultCode.EXCEL_PARSE_ERROR);
+            throw new BaseException(ExceptionEnum.EXCEL_PARSE_ERROR);
         }
         return BaseResult.success();
     }

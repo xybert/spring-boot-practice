@@ -3,12 +3,12 @@ package com.xybert.springbooteasyexcel.service.impl;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.handler.WriteHandler;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xybert.springbooteasyexcel.constant.SystemResultCode;
 import com.xybert.springbooteasyexcel.entity.User;
-import com.xybert.springbooteasyexcel.exception.SystemException;
+import com.xybert.springbooteasyexcel.enums.ExceptionEnum;
 import com.xybert.springbooteasyexcel.mapper.UserMapper;
 import com.xybert.springbooteasyexcel.service.UserService;
 import com.xybert.springbooteasyexcel.util.EasyExcelUtils;
+import com.xybert.springbootexception.exception.BaseException;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +38,7 @@ public class UserServiceImpl  extends ServiceImpl<UserMapper, User> implements U
         String rawFileName = "用户信息表";
         List<User> users = userMapper.selectList(null);
         if (CollectionUtils.isEmpty(users)) {
-            throw new SystemException(SystemResultCode.NO_DATA_EXIST);
+            throw new BaseException(ExceptionEnum.NO_DATA_EXIST);
         }
         List<WriteHandler> writeHandlers = new ArrayList<>();
         writeHandlers.add(EasyExcelUtils.createCellStyleStrategy());
@@ -46,7 +46,7 @@ public class UserServiceImpl  extends ServiceImpl<UserMapper, User> implements U
             setResponse(response, rawFileName);
             EasyExcelUtils.write(response.getOutputStream(), User.class, users, writeHandlers);
         } catch (IOException e) {
-            throw new SystemException(SystemResultCode.DATA_EXPORT_FAIL);
+            throw new BaseException(ExceptionEnum.DATA_EXPORT_FAIL);
         }
     }
 
@@ -55,6 +55,6 @@ public class UserServiceImpl  extends ServiceImpl<UserMapper, User> implements U
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         // 设置URLEncoder.encode可以防止中文乱码
         String fileName = URLEncoder.encode(rawFileName, StandardCharsets.UTF_8.name()).replaceAll("\\+", "%20");
-        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ExcelTypeEnum.XLSX.getValue());
+        response.setHeader("Content-disposition", "attachment;filename=utf-8" + fileName + ExcelTypeEnum.XLSX.getValue());
     }
 }

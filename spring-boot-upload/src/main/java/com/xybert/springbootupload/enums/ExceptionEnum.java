@@ -1,4 +1,4 @@
-package com.xybert.springbootjpa.enums;
+package com.xybert.springbootupload.enums;
 
 import com.xybert.springbootexception.result.BaseErrorInterface;
 import lombok.AllArgsConstructor;
@@ -7,16 +7,16 @@ import lombok.Getter;
 /**
  * @author xybert
  * @description 异常枚举类
- * @date 2022/12/31 16:54
+ * @date 2023/01/11 14:52
  */
 
 @Getter
 @AllArgsConstructor
 public enum ExceptionEnum implements BaseErrorInterface {
 
-    USER_NOT_EXIST("10301", "用户不存在"),
-    USER_ALREADY_EXIST("10302", "用户已存在"),
-    ACCOUNT_DUPLICATE("10303", "用户名重复"),
+    EMPTY_FILE("10401", "文件为空"),
+    PATH_NOT_EXIST("10402", "上传路径不存在"),
+    UPLOAD_FAIL("10403", "文件上传失败"),
     ;
 
     /**

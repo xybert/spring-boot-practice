@@ -1,6 +1,7 @@
 package com.xybert.springbootdownload.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.util.StreamUtils;
 
@@ -35,7 +36,7 @@ public class FileUtil {
             return null;
         }
         File dir = new File(Objects.requireNonNull(path));
-        return org.apache.commons.io.FileUtils.getFile(dir, fileName);
+        return FileUtils.getFile(dir, fileName);
     }
 
     /**

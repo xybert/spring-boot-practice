@@ -2,10 +2,10 @@ package com.xybert.springbootupload.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
-import com.google.common.collect.Lists;
-import com.xybert.springbootupload.common.BaseResult;
+import com.xybert.springbootexception.exception.BaseException;
+import com.xybert.springbootexception.result.BaseResult;
+import com.xybert.springbootupload.enums.ExceptionEnum;
 import com.xybert.springbootupload.service.UploadService;
-import com.xybert.springbootupload.vo.FileVO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,13 +14,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,14 +36,14 @@ public class UploadServiceImpl implements UploadService {
      * @return 文件名称
      */
     @Override
-    public BaseResult<FileVO> uploadSingleFile(MultipartFile file) {
+    public BaseResult uploadSingleFile(MultipartFile file) {
         if (file.isEmpty()) {
-            return new BaseResult("06239", "文件为空", "empty file");
+            throw new BaseException(ExceptionEnum.EMPTY_FILE);
         }
         String rawFileName = StrUtil.subBefore(file.getOriginalFilename(), ".", true);
         String fileType = StrUtil.subAfter(file.getOriginalFilename(), ".", true);
 
-        // 生成新文件名，避免上传相同文件导致文件名重复
+        /// 生成新文件名，避免上传相同文件导致文件名重复
         /// 上传至外部目录
         /// String newFileName = StrUtil.appendIfMissing(uploadFilePath, File.separator) + rawFileName + "_" +
         ///                 DateUtil.current() + "." + fileType;
@@ -59,24 +53,19 @@ public class UploadServiceImpl implements UploadService {
         try {
             newFileName = ResourceUtils.getURL("classpath:").getPath() + uploadFilePath +
                     rawFileName + "_" + DateUtil.current() + "." + fileType;
-        } catch (FileNotFoundException e) {
-            return new BaseResult("06579", "文件未找到", "file not found");
+        } catch (IOException e) {
+            throw new BaseException(ExceptionEnum.PATH_NOT_EXIST);
         }
         File dest = new File(newFileName);
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
         }
-        FileVO fileVO = new FileVO();
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), dest);
-            fileVO.setName(rawFileName);
-            fileVO.setExtension(fileType);
-            fileVO.setSize(getFileSize(file));
-            fileVO.setTime(new Date());
         } catch (IOException e) {
-            return new BaseResult("06949", "文件上传失败", "file upload failed");
+            throw new BaseException(ExceptionEnum.UPLOAD_FAIL);
         }
-        return BaseResult.success(Collections.singletonList(fileVO));
+        return BaseResult.success();
     }
 
     /**
@@ -86,31 +75,11 @@ public class UploadServiceImpl implements UploadService {
      * @return 文件名列表
      */
     @Override
-    public BaseResult<FileVO> uploadMultipleFiles(List<MultipartFile> files) {
+    public BaseResult uploadMultipleFiles(List<MultipartFile> files) {
         if (CollectionUtils.isEmpty(files)) {
-            return BaseResult.fail(Lists.newArrayList());
+            return BaseResult.fail();
         }
-        List<FileVO> fileVOList = new ArrayList<>();
-        files.forEach(file -> fileVOList.addAll(uploadSingleFile(file).getResult().getData()));
-        return BaseResult.success(fileVOList);
-    }
-
-    /**
-     * 获取文件大小
-     *
-     * @param file 文件
-     * @return 文件大小字符串
-     */
-    public static String getFileSize(MultipartFile file) {
-        final long kb = 1024;
-        final long mb = kb * 1024;
-        long fileSize = file.getSize();
-        if (fileSize >= mb) {
-            return new BigDecimal(fileSize / mb).setScale(2, RoundingMode.HALF_UP).doubleValue() + "MB";
-        } else if (fileSize >= kb) {
-            return new BigDecimal(fileSize / kb).setScale(2, RoundingMode.HALF_UP).doubleValue() + "KB";
-        } else {
-            return new BigDecimal(fileSize).setScale(2, RoundingMode.HALF_UP).doubleValue() + "B";
-        }
+        files.forEach(this::uploadSingleFile);
+        return BaseResult.success();
     }
 }

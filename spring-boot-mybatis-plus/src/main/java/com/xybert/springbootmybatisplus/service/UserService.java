@@ -2,7 +2,7 @@ package com.xybert.springbootmybatisplus.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xybert.springbootmybatisplus.common.BaseResult;
+import com.xybert.springbootexception.result.BaseResult;
 import com.xybert.springbootmybatisplus.entity.User;
 
 import java.util.List;
