@@ -13,8 +13,8 @@ spring:
     host: smtp.qq.com
     port: 587
     protocol: smtp
-    username: xybert@qq.com
-    password: ywiccwbzfifddiag
+    username: xxx@qq.com
+    password: xxx-xxx-xxx
     properties:
       mail.smtp.auth: true
       mail.smtp.timeout: 25000
