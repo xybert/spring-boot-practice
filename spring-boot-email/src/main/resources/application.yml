@@ -1,0 +1,29 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /springboot/practice/email
+
+logging:
+  level:
+    com.xybert.springbootemail: debug
+
+spring:
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    port: 587
+    protocol: smtp
+    username: xybert@qq.com
+    password: ywiccwbzfifddiag
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.timeout: 25000
+      mail.smtp.ssl.enable: false
+#      mail.smtp.ssl.required: false
+
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML

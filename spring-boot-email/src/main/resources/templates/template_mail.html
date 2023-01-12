@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>模板邮件</title>
+</head>
+<body>
+<div class="container">
+    <p>收件邮箱：<b><span th:text="${toEmail}"></span></b></p>
+    <p>发件邮箱：<b><span th:text="${fromEmail}"></span></b></p>
+</div>
+</body>
+</html>
