@@ -36,6 +36,10 @@
 - [x] [spring-boot-knife4j](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-knife4j)
 - [x] [spring-boot-easyexcel](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-easyexcel)
 - [x] [spring-boot-exception](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-exception)
+- [x] [spring-boot-email](https://github.com/xybert/spring-boot-practice/tree/main/spring-boot-email)
+- [ ] [spring-boot-shiro]()
+- [ ] [spring-boot-security]()
+- [ ] [spring-boot-jwt]()
 
 ## 接口文档
 
