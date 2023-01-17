@@ -37,8 +37,9 @@ public class UserController {
     @PostMapping("/save")
     @Operation(summary = "添加用户", method = "POST", tags = {"DONE"})
     @Parameters(value = {
-            @Parameter(name = "id", description = "用户id", required = true),
-            @Parameter(name = "name", description = "用户名"),
+            @Parameter(name = "account", description = "用户名", required = true),
+            @Parameter(name = "password", description = "密码", required = true),
+            @Parameter(name = "salt", description = "盐值", required = true),
             @Parameter(name = "sex", description = "性别"),
             @Parameter(name = "age", description = "年龄"),
             @Parameter(name = "tel", description = "手机号码"),

@@ -8,33 +8,33 @@
     <insert id="insertUser">
         INSERT INTO user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            name, sex, age,
+            account, password, salt
+            <if test='user != null and user.sex != null and user.sex != ""'>
+                sex,
+            </if>
+            <if test='user != null and user.age != null and user.age != ""'>
+                age,
+            </if>
             <if test='user != null and user.tel != null and user.tel != ""'>
                 tel,
             </if>
             <if test='user != null and user.email != null and user.email != ""'>
                 email,
             </if>
-            <if test='user != null and user.status != null and user.status &gt;= 0 and user.status &lt;= 1'>
-                status,
-            </if>
-            <if test='user != null and user.role != null and user.role &gt;= 1 and user.role &lt;= 3'>
-                role,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{user.name}, #{user.sex}, #{user.age},
+            #{user.account}, #{user.password}, #{user.salt},
+            <if test='user != null and user.sex != null and user.sex != ""'>
+                #{user.sex},
+            </if>
+            <if test='user != null and user.age != null and user.age != ""'>
+                #{user.age},
+            </if>
             <if test='user != null and user.tel != null and user.tel != ""'>
                 #{user.tel},
             </if>
             <if test='user != null and user.email != null and user.email != ""'>
                 #{user.email},
-            </if>
-            <if test='user != null and user.status != null and user.status &gt;= 0 and user.status &lt;= 1'>
-                #{user.status},
-            </if>
-            <if test='user != null and user.role != null and user.role &gt;= 1 and user.role &lt;= 3'>
-                #{user.role},
             </if>
         </trim>
     </insert>
@@ -42,8 +42,8 @@
     <update id="updateUser">
         UPDATE user
         <trim prefix="set" suffixOverrides=",">
-            <if test='user != null and user.name != null and user.name != ""'>
-                name = #{user.name},
+            <if test='account != null and user.account != null and user.account != ""'>
+                name = #{user.account},
             </if>
             <if test='user != null and user.sex != null and user.sex &gt;= 0 and user.sex &lt;= 1'>
                 sex = #{user.sex},
@@ -56,12 +56,6 @@
             </if>
             <if test='user != null and user.email != null and user.email != ""'>
                 email = #{user.email},
-            </if>
-            <if test='user != null and user.status != null and user.status &gt;= 0 and user.status &lt;= 1'>
-                status = #{user.status},
-            </if>
-            <if test='user != null and user.role != null and user.role &gt;= 1 and user.role &lt;= 3'>
-                role = #{user.role},
             </if>
         </trim>
         WHERE id = #{user.id}

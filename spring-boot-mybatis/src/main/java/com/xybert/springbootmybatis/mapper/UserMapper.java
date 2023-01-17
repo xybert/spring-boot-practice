@@ -37,11 +37,11 @@ public interface UserMapper {
     /**
      * 根据用户名查询用户信息
      *
-     * @param name 用户名
+     * @param account 用户名
      * @return User 用户
      */
-    @Select("SELECT * FROM user WHERE name = #{name}")
-    User selectUserByName(@Param("name") String name);
+    @Select("SELECT * FROM user WHERE account = #{account}")
+    User selectUserByAccount(@Param("account") String account);
 
     /**
      * 添加用户

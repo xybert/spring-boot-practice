@@ -55,12 +55,12 @@ public class UserServiceImpl implements UserService {
     /**
      * 根据用户名查询用户信息
      *
-     * @param name 用户名
+     * @param account 用户名
      * @return User 用户
      */
     @Override
-    public User selectUserByName(String name) {
-        return Optional.ofNullable(userMapper.selectUserByName(name))
+    public User selectUserByName(String account) {
+        return Optional.ofNullable(userMapper.selectUserByAccount(account))
                 .orElseThrow(() -> new BaseException(ExceptionEnum.USER_NOT_EXIST));
     }
 
@@ -72,14 +72,14 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User insertUser(User userInfo) {
-        User user = userMapper.selectUserByName(userInfo.getName());
+        User user = userMapper.selectUserByAccount(userInfo.getAccount());
         if (user != null) {
-            throw new BaseException(ExceptionEnum.USER_ALREADY_EXIST, userInfo.getName());
+            throw new BaseException(ExceptionEnum.USER_ALREADY_EXIST, userInfo.getAccount());
         }
         if (userMapper.insertUser(userInfo) == 0) {
             throw new BaseException(ExceptionEnum.USER_INSERT_FAIL);
         }
-        return selectUserByName(userInfo.getName());
+        return selectUserByName(userInfo.getAccount());
     }
 
     /**

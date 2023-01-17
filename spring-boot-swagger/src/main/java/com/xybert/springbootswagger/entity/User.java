@@ -33,7 +33,17 @@ public class User extends Model<User> implements Serializable {
     /**
      * 用户名
      */
-    private String name;
+    private String account;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 盐值
+     */
+    private String salt;
 
     /**
      * 性别 1-男 0 女

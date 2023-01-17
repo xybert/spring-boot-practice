@@ -45,6 +45,20 @@ public class User extends Model<User> {
     private String account;
 
     /**
+     * 密码
+     */
+    @TableField(value = "password", insertStrategy = FieldStrategy.NOT_EMPTY)
+    @ExcelIgnore
+    private String password;
+
+    /**
+     * 盐值
+     */
+    @TableField(value = "salt", insertStrategy = FieldStrategy.NOT_EMPTY)
+    @ExcelIgnore
+    private String salt;
+
+    /**
      * 性别 1-男 0 女
      */
     @TableField(value = "sex")
